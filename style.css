@@ -6,7 +6,7 @@ body {
   width: 100vw;
   height: 100vh;
 }
-
+/* header */
 header {
   background-color: #ffffff;
   width: 100vw;
@@ -15,4 +15,40 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 4vw;
+}
+
+/* main */
+
+main {
+  background-color: #fbfbfb;
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 4vw 4vw;
+}
+
+/* contact card */
+.contactCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contactCard > figure > img {
+  border-radius: 100%;
+}
+
+.contactCard > p {
+  text-align: left;
+  width: 80%;
+  padding: 0 2rem;
+  white-space: normal;
+  overflow: hidden;
+  color: #363636;
+  font-weight: 600;
+  line-height: 1.125;
+  word-break: break-word;
 }
