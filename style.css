@@ -1,1 +1,18 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+body {
+  /* background-color: #fafafa; */
+  background-color: #aaaaaa;
+  width: 100vw;
+  height: 100vh;
+}
+
+header {
+  background-color: #ffffff;
+  width: 100vw;
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 4vw;
+}
