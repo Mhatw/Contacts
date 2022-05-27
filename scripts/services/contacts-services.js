@@ -1,6 +1,4 @@
-import { tokenKey } from "../config.js"
 import apiFetch from "./api-fetch.js"
-let newContacts = {}
 
 export async function getContacts() {
   return apiFetch("contacts")
