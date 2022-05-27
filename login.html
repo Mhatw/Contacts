@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="titleLog">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <header class="container is-max-desktop">
+      <a class="navbar-item" href="#">
         <h1>Login</h1>
-      </div>
+      </a>
+      <!-- <button class="button is-danger is-light is-small">logout</button> -->
     </header>
-    <main>
-      <div class="mailBox">
-        <input type="text" id="username" name="username">
-    </div>
-     <div class="passwordBox">
-        <input type="password" id="pass" name="password"
-               minlength="8" required>
-      </div>
+    <main class="container is-max-desktop">
+      <!-- form -->
+      <form action="" class="form">
+        <div class="formBody">
+          <div class="mailBox control">
+            <input
+              class="input"
+              type="email"
+              id="email"
+              name="email"
+              placeholder="email"
+            />
+          </div>
+          <div class="passwordBox control">
+            <input
+              class="input"
+              type="password"
+              id="pass"
+              name="password"
+              placeholder="password"
+              minlength="8"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="linksFooter field">
+          <div class="control">
+            <a class="button is-link is-light is-small">Signup</a>
+          </div>
+          <div class="control">
+            <input
+              type="submit"
+              class="button is-link is-small"
+              value="Login"
+            />
+          </div>
+        </div>
+      </form>
     </main>
-    <footer>
-      <div class ="linksFooter">
-        <ul>
-          <li><a href="">Signup</a></li>
-          <li><a href="">Login</a></li>
-        </ul>
-      </div>
-    </footer>
-  </div>
-</body>
+  </body>
 </html>
