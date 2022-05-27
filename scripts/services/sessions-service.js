@@ -13,8 +13,3 @@ export async function logout(){
   return data
 }
 
-export async function signup(credentials = { email, password }) {
-  const {token, ...user} = await apiFetch("signup", { body: credentials }) // (endpoint = "login", {body: {email, password}})
-  sessionStorage.setItem(tokenKey, token)
-  return user;
-}
