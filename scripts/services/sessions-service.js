@@ -12,3 +12,9 @@ export async function logout(){
   sessionStorage.removeItem(tokenKey)
   return data
 }
+
+export async function signup(credentials = { email, password }) {
+  const {token, ...user} = await apiFetch("signup", { body: credentials }) // (endpoint = "login", {body: {email, password}})
+  sessionStorage.setItem(tokenKey, token)
+  return user;
+}
