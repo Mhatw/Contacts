@@ -1,4 +1,4 @@
-const signUpHtml = `
+export const signUpHtml = `
     <header class="container is-max-desktop">
       <a class="navbar-item" href="#">
         <h1>Sign Up</h1>

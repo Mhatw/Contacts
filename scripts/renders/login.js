@@ -1,4 +1,4 @@
-const loginHtml = `
+export const loginHtml = `
 <header class="container is-max-desktop">
 <a class="navbar-item" href="#">
   <h1>Login</h1>
@@ -22,7 +22,6 @@ const loginHtml = `
       <input
         class="input"
         type="password"
-        id="pass"
         name="password"
         placeholder="password"
         minlength="8"
