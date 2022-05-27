@@ -2,11 +2,34 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
     <title>Contactable</title>
   </head>
-  <body>
-    <!-- Happy coding -->
-    <script type="module" src="index.js"></script>
+  <body class=".container">
+    <!-- header -->
+    <header class="container is-max-desktop">
+      <a class="navbar-item" href="#">
+        <h1>Contactable</h1>
+      </a>
+      <button class="button is-danger is-light is-small">logout</button>
+    </header>
+    <main class="container is-max-desktop">
+      <div class="box container is-max-desktop contactCard">
+        <!-- img perfil -->
+        <figure class="image is-48x48">
+          <img
+            src="https://bulma.io/images/placeholders/96x96.png"
+            alt="Placeholder image"
+          />
+        </figure>
+        <!-- name -->
+        <p class="is-6">Cristian jose espinoza alburqueque</p>
+        <!-- icon -->
+        <span class="icon">
+          <img src="./assets/star.svg" alt="star icon" />
+        </span>
+      </div>
+    </main>
   </body>
 </html>
