@@ -1,5 +1,7 @@
 import DOMHandler from "../dom-handler.js";
 import { login } from "../services/sessions-service.js";
+import STORE from "../store.js";
+import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
 import SignupPage from "./signup.js";
 
@@ -33,7 +35,7 @@ function renderLogin() {
       type="password"
       name="password"
       placeholder="password"
-      minlength="8"
+      minlength="6"
       required
       />
       </div>
@@ -84,13 +86,16 @@ function listenSubmitForm() {
       };
 
       const user = await login(credentials);
-      // STORE.user = user;
-      console.log(credentials, user);
+      STORE.user = user;
+      // nose porque pero no lo borren porque no se si es necesario
+      // console.log(user, STORE.user);
 
-      // await STORE.fetchCategories();
       setTimeout(function () {
-        DOMHandler.load(LoginPage);
-      }, 1000);
+        loadingPage();
+        setTimeout(() => {
+          DOMHandler.load(HomePage);
+        }, 500);
+      }, 500);
     } catch (error) {
       LoginPage.state.loginError = error.message;
       setTimeout(function () {
@@ -113,3 +118,8 @@ const LoginPage = {
 };
 
 export default LoginPage;
+
+// make me a delay
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
