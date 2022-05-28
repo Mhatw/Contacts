@@ -84,3 +84,23 @@ function renderCreate() {
   `
 }
 
+function listenSubmitForm() {
+  const form = document.querySelector(".form")
+  const $logoutBtn = document.querySelector("#logout-btn");
+  $logoutBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    await logout();
+    setTimeout(function () {
+      loadingPage();
+      setTimeout(() => {
+        DOMHandler.load(LoginPage);
+      }, 500);
+    }, 500);
+  });
+  document.querySelector("#cancel-btn").addEventListener('click', (event) => {
+    event.preventDefault();    
+    setTimeout(() => {
+      DOMHandler.load(HomePage);
+      CreatePage.state.createError = null;
+    }, 800);
+  })
