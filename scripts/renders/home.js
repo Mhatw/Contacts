@@ -3,6 +3,7 @@ import { editContacts } from "../services/contacts-services.js";
 import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import { cardHtml } from "./card.js";
+import CreatePage from "./createContact.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
