@@ -1,5 +1,6 @@
-export const cardHtml = `
-<div class="box container is-max-desktop contactCard">
+export const cardHtml = (contact) => {  
+  return `
+      <div class="box container is-max-desktop contactCard">
         <!-- img perfil -->
         <figure class="image is-48x48">
           <img
@@ -8,9 +9,10 @@ export const cardHtml = `
           />
         </figure>
         <!-- name -->
-        <p class="is-6">Cristian jose espinoza alburqueque</p>
+        <p class="is-6">${contact.name}</p>
         <!-- icon -->
         <span class="icon">
-          <img src="./assets/star.svg" alt="star icon" />
+          <i class="fas fa-star"></i>
         </span>
       </div>`;
+}
