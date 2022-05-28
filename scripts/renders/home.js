@@ -96,7 +96,19 @@ function listenToUnfavorite() {
     console.log(error);
   }
 }
-
+function listenCreate() {
+  const createBtn = document.querySelector("#create-btn");
+  createBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    setTimeout(function () {
+      loadingPage();
+      setTimeout( () => {
+        // await STORE.fetchContacts();
+        DOMHandler.load(CreatePage);
+      }, 500);
+    }, 500);
+  })
+}
 export const HomePage = {
   toString() {
     return render();
