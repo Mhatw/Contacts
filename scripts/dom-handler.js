@@ -14,6 +14,7 @@ const DOMHandler = (function (parentSelector) {
       this.load(this.module);
     },
   };
-})("#root");
+
+})("body");
 
 export default DOMHandler;
