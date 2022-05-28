@@ -114,6 +114,6 @@ export const HomePage = {
     return render();
   },
   addListeners() {
-    listenToFavorite(), listenToUnfavorite();
+    listenToFavorite(), listenToUnfavorite(), listenCreate();
   },
 };
