@@ -104,3 +104,33 @@ function listenSubmitForm() {
       CreatePage.state.createError = null;
     }, 800);
   })
+
+  form.addEventListener('submit', async (event) => {
+    document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
+    try {
+      event.preventDefault();
+      const { name, number, email, relation } = event.target;
+      
+      const credentials = {
+        name: name.value,
+        number: number.value,
+        email: email.value,
+        relation: relation.value
+      };
+      const contact = await createContacts(credentials);
+      STORE.contacts.push(contact);
+
+      setTimeout(function () {
+        loadingPage();
+        setTimeout( () => {
+          DOMHandler.load(HomePage);
+        }, 500);
+      }, 500);
+    } catch (error) {
+      CreatePage.state.createError = error.message;
+      setTimeout(function () {
+        DOMHandler.reload();
+      }, 1000);
+    }
+  })
+}
