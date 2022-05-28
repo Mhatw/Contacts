@@ -28,6 +28,7 @@ header {
 /* main */
 
 main {
+  position: relative;
   background-color: #f3f5fc;
   width: 100vw;
   height: 90vh;
@@ -42,10 +43,6 @@ main {
   overflow: scroll;
   scrollbar-width: none;
 }
-/* main::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-} */
 
 /* contact card */
 .contactCard {
@@ -106,4 +103,18 @@ main {
   align-items: center;
   width: 100%;
   gap: 1rem;
+}
+
+#create-btn {
+  width: 3em;
+  height: 3em;
+  border-radius: 100%;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  transition: 0s;
 }

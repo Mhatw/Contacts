@@ -47,12 +47,25 @@ function render() {
           ${STORE.contacts.map((contact) => renderContact(contact)).join("")}
         </ul>
   </div>
-    <a id="create-btn" class="create-btn delete is-large has-background-link">Create Contact</a>
+    <a id="create-btn" class="button is-link is-large is-rounded"><img src="./assets/add.svg" alt=""></a>
       </main>
       `;
 }
+function calcMainAddBtn() {
+  const box = document.querySelector("main");
+  const createBtn = document.querySelector("#create-btn");
+  let width = box.offsetWidth;
+  let height = box.offsetHeight;
+  createBtn.style.transform = `translate(${
+    width / 2 - createBtn.offsetWidth
+  }px,${height - createBtn.offsetHeight * 2}px)`;
+  // console.log(createBtn.style.transform);
+}
+
+window.addEventListener("resize", calcMainAddBtn);
 
 function listenToFavorite() {
+  calcMainAddBtn();
   const ul = document.querySelector(".js-contact-list");
   const $logoutBtn = document.querySelector("#logout-btn");
   $logoutBtn.addEventListener("click", async (event) => {
@@ -98,16 +111,16 @@ function listenToUnfavorite() {
 }
 function listenCreate() {
   const createBtn = document.querySelector("#create-btn");
-  createBtn.addEventListener('click', (event) => {
+  createBtn.addEventListener("click", (event) => {
     event.preventDefault();
     setTimeout(function () {
       loadingPage();
-      setTimeout( () => {
+      setTimeout(() => {
         // await STORE.fetchContacts();
         DOMHandler.load(CreatePage);
       }, 500);
     }, 500);
-  })
+  });
 }
 export const HomePage = {
   toString() {
