@@ -51,8 +51,10 @@ function renderCreate() {
         />
         </div>
         
-        <div class="passwordBox control">
-          <select name="relation" class="select ${createError ? "is-danger" : ""}" id="relation">
+        <div class="passwordBox select ">
+          <select name="relation" class="${
+            createError ? "is-danger" : ""
+          }" id="relation">
             <option value="" disabled selected hidden>Relation</option>
             <option value="Family">Family</option>
             <option value="Friends">Friends</option>
@@ -81,11 +83,11 @@ function renderCreate() {
     </div>
   </form>
     </main>
-  `
+  `;
 }
 
 function listenSubmitForm() {
-  const form = document.querySelector(".form")
+  const form = document.querySelector(".form");
   const $logoutBtn = document.querySelector("#logout-btn");
   $logoutBtn.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -97,32 +99,32 @@ function listenSubmitForm() {
       }, 500);
     }, 500);
   });
-  document.querySelector("#cancel-btn").addEventListener('click', (event) => {
-    event.preventDefault();    
+  document.querySelector("#cancel-btn").addEventListener("click", (event) => {
+    event.preventDefault();
     setTimeout(() => {
       DOMHandler.load(HomePage);
       CreatePage.state.createError = null;
     }, 800);
-  })
+  });
 
-  form.addEventListener('submit', async (event) => {
+  form.addEventListener("submit", async (event) => {
     document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
     try {
       event.preventDefault();
       const { name, number, email, relation } = event.target;
-      
+
       const credentials = {
         name: name.value,
         number: number.value,
         email: email.value,
-        relation: relation.value
+        relation: relation.value,
       };
       const contact = await createContacts(credentials);
       STORE.contacts.push(contact);
 
       setTimeout(function () {
         loadingPage();
-        setTimeout( () => {
+        setTimeout(() => {
           DOMHandler.load(HomePage);
         }, 500);
       }, 500);
@@ -132,7 +134,7 @@ function listenSubmitForm() {
         DOMHandler.reload();
       }, 1000);
     }
-  })
+  });
 }
 
 const CreatePage = {
