@@ -14,7 +14,7 @@ body::-webkit-scrollbar {
 /* header */
 header {
   background-color: #ffffff;
-  width: 100vw;
+  /* width: 100vw; */
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -30,7 +30,7 @@ header {
 main {
   position: relative;
   background-color: #f3f5fc;
-  width: 100vw;
+  /* width: 100vw; */
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -88,12 +88,17 @@ main {
 .passwordBox {
   margin-bottom: 1rem;
   width: 80%;
+  max-width: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .mailBox > input,
 .passwordBox > input {
+  width: 100%;
+  max-width: 360px;
+}
+.passwordBox > select {
   width: 100%;
   max-width: 360px;
 }
