@@ -1,4 +1,5 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap");
 @import url(./css/loading.css);
 @import url(./css/scrollbar.css);
 
@@ -14,7 +15,7 @@ body::-webkit-scrollbar {
 /* header */
 header {
   background-color: #ffffff;
-  width: 100vw;
+  /* width: 100vw; */
   height: 10vh;
   display: flex;
   justify-content: space-between;
@@ -25,12 +26,21 @@ header {
     0 8px 8px hsl(0deg 0% 0% / 0.025), 0 16px 16px hsl(0deg 0% 0% / 0.025);
 }
 
+header > a > h1,
+header > div > h1 {
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  /* word-spacing: 1rem; */
+  color: #000;
+}
+
 /* main */
 
 main {
   position: relative;
   background-color: #f3f5fc;
-  width: 100vw;
+  /* width: 100vw; */
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -88,12 +98,17 @@ main {
 .passwordBox {
   margin-bottom: 1rem;
   width: 80%;
+  max-width: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .mailBox > input,
 .passwordBox > input {
+  width: 100%;
+  max-width: 360px;
+}
+.passwordBox > select {
   width: 100%;
   max-width: 360px;
 }
