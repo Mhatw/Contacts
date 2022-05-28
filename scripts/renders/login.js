@@ -87,12 +87,14 @@ function listenSubmitForm() {
 
       const user = await login(credentials);
       STORE.user = user;
+
       // nose porque pero no lo borren porque no se si es necesario
       // console.log(user, STORE.user);
 
       setTimeout(function () {
         loadingPage();
-        setTimeout(() => {
+        setTimeout(async () => {
+          await STORE.fetchContacts();
           DOMHandler.load(HomePage);
         }, 500);
       }, 500);
@@ -118,8 +120,3 @@ const LoginPage = {
 };
 
 export default LoginPage;
-
-// make me a delay
-function delay(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
