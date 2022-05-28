@@ -3,7 +3,6 @@ import { login } from "../services/sessions-service.js";
 
 // render login
 function renderLogin() {
-  // const { loginError } = this.state;
   const { loginError } = LoginPage.state;
   console.log(LoginPage.state, loginError ? "si" : "no");
   return `<header class="container is-max-desktop">
@@ -46,7 +45,7 @@ function renderLogin() {
 
   <div class="linksFooter field">
     <div class="control">
-      <a class="button is-link is-light">Signup</a>
+      <a onclick="DOMHandler.load(SignupPage)" class="button is-link is-light">Signup</a>
     </div>
     <div class="control">
       <button
@@ -61,10 +60,6 @@ function renderLogin() {
 }
 
 const $ = (selector) => document.querySelector(selector);
-
-// function renderLogin() {
-//   $("body").innerHTML = loginHtml;
-// }
 
 // listener
 
@@ -87,7 +82,7 @@ function listenSubmitForm() {
 
       // await STORE.fetchCategories();
       setTimeout(function () {
-        DOMHandler.load(homePage);
+        // DOMHandler.load(homePage);
       }, 1000);
     } catch (error) {
       LoginPage.state.loginError = error.message;
@@ -100,11 +95,9 @@ function listenSubmitForm() {
 
 const LoginPage = {
   toString() {
-    // return render.call(this)
     return renderLogin();
   },
   addListeners() {
-    // listenSubmitForm.call(this)
     return listenSubmitForm();
   },
   state: {

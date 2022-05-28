@@ -1,6 +1,7 @@
 import { tokenKey } from "../config.js";
 import DOMHandler from "../dom-handler.js";
 import LoginPage from "./login.js";
+import SignupPage from "./signup.js";
 
 async function init() {
   try {
@@ -12,10 +13,10 @@ async function init() {
     // STORE.user = user
 
     // await STORE.fetchCategories();
-    DOMHandler.load(LoginPage);
+    DOMHandler.load(SignupPage);
   } catch (error) {
     sessionStorage.removeItem(tokenKey);
-    DOMHandler.load(LoginPage);
+    DOMHandler.load(SignupPage);
   }
 }
 
