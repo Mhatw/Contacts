@@ -35,7 +35,7 @@ function render() {
   <!-- header -->
   <header class="container is-max-desktop">
   <a class="navbar-item" href="#">
-  <h1>Contactable</h1>
+  <h1>📕 Contactable</h1>
   </a>
   <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
   </header>

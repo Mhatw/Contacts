@@ -12,7 +12,7 @@ function renderCreate() {
   <div class="container">
     <header>
       <div class="titleLog">
-        <h1>Create new contact</h1>
+        <h1>📕 Create new contact</h1>
       </div>
       <div class ="linkOut">
         <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
