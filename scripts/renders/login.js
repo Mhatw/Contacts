@@ -6,7 +6,6 @@ import SignupPage from "./signup.js";
 // render login
 function renderLogin() {
   const { loginError } = LoginPage.state;
-  console.log(LoginPage.state, loginError ? "si" : "no");
   return `<header class="container is-max-desktop">
 <a class="navbar-item" href="#">
   <h1>Login</h1>
@@ -89,7 +88,7 @@ function listenSubmitForm() {
 
       // await STORE.fetchCategories();
       setTimeout(function () {
-        // DOMHandler.load(homePage);
+        DOMHandler.load(LoginPage);
       }, 1000);
     } catch (error) {
       LoginPage.state.loginError = error.message;

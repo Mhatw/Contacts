@@ -2,12 +2,10 @@ import DOMHandler from "../dom-handler.js";
 import { signup } from "../services/users-service.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
-// import { login } from "../services/sessions-service.js";
 // render Signup
 
 function renderSignup() {
   const { SignupError } = SignupPage.state;
-  console.log(SignupPage.state, SignupError ? "si" : "no");
   return `<header class="container is-max-desktop">
 <a class="navbar-item" href="#">
   <h1>Sign Up</h1>
@@ -90,13 +88,13 @@ function listenSubmitForm() {
 
       // await STORE.fetchCategories();
       setTimeout(function () {
-        // DOMHandler.load(homePage);
-      }, 1000);
+        DOMHandler.load(LoginPage);
+      }, 800);
     } catch (error) {
       SignupPage.state.SignupError = error.message;
       setTimeout(function () {
         DOMHandler.reload();
-      }, 1000);
+      }, 800);
     }
   });
 }

@@ -13,10 +13,10 @@ async function init() {
     // STORE.user = user
 
     // await STORE.fetchCategories();
-    DOMHandler.load(SignupPage);
+    DOMHandler.load(LoginPage);
   } catch (error) {
     sessionStorage.removeItem(tokenKey);
-    DOMHandler.load(SignupPage);
+    DOMHandler.load(LoginPage);
   }
 }
 
