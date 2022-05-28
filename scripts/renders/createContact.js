@@ -134,3 +134,17 @@ function listenSubmitForm() {
     }
   })
 }
+
+const CreatePage = {
+  toString() {
+    return renderCreate();
+  },
+  addListeners() {
+    return listenSubmitForm();
+  },
+  state: {
+    createError: null,
+  },
+};
+
+export default CreatePage;
