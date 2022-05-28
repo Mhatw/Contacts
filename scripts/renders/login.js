@@ -1,5 +1,7 @@
 import DOMHandler from "../dom-handler.js";
 import { login } from "../services/sessions-service.js";
+import loadingPage from "./loading.js";
+import SignupPage from "./signup.js";
 
 // render login
 function renderLogin() {
@@ -45,7 +47,7 @@ function renderLogin() {
 
   <div class="linksFooter field">
     <div class="control">
-      <a onclick="DOMHandler.load(SignupPage)" class="button is-link is-light">Signup</a>
+      <a id="to-signup-btn" class="button is-link is-light">Signup</a>
     </div>
     <div class="control">
       <button
@@ -65,7 +67,12 @@ const $ = (selector) => document.querySelector(selector);
 
 function listenSubmitForm() {
   const $form = $(".form");
-
+  $("#to-signup-btn").addEventListener("click", () => {
+    loadingPage();
+    setTimeout(() => {
+      DOMHandler.load(SignupPage);
+    }, 800);
+  });
   $form.addEventListener("submit", async (event) => {
     $("#submit-btn").classList.toggle("is-loading");
     try {

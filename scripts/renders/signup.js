@@ -1,8 +1,10 @@
 import DOMHandler from "../dom-handler.js";
 import { signup } from "../services/users-service.js";
+import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 // import { login } from "../services/sessions-service.js";
 // render Signup
+
 function renderSignup() {
   const { SignupError } = SignupPage.state;
   console.log(SignupPage.state, SignupError ? "si" : "no");
@@ -67,7 +69,10 @@ const $ = (selector) => document.querySelector(selector);
 function listenSubmitForm() {
   const $form = $(".form");
   $("#to-login-btn").addEventListener("click", () => {
-    DOMHandler.load(LoginPage);
+    loadingPage();
+    setTimeout(() => {
+      DOMHandler.load(LoginPage);
+    }, 800);
   });
   $form.addEventListener("submit", async (event) => {
     $("#submit-btn").classList.toggle("is-loading");
