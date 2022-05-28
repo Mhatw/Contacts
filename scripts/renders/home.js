@@ -3,6 +3,7 @@ import { editContacts } from "../services/contacts-services.js";
 import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import { cardHtml } from "./card.js";
+import CreatePage from "./createContact.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
@@ -46,6 +47,7 @@ function render() {
           ${STORE.contacts.map((contact) => renderContact(contact)).join("")}
         </ul>
   </div>
+    <a id="create-btn" class="create-btn delete is-large has-background-link">Create Contact</a>
       </main>
       `;
 }
@@ -94,12 +96,24 @@ function listenToUnfavorite() {
     console.log(error);
   }
 }
-
+function listenCreate() {
+  const createBtn = document.querySelector("#create-btn");
+  createBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    setTimeout(function () {
+      loadingPage();
+      setTimeout( () => {
+        // await STORE.fetchContacts();
+        DOMHandler.load(CreatePage);
+      }, 500);
+    }, 500);
+  })
+}
 export const HomePage = {
   toString() {
     return render();
   },
   addListeners() {
-    listenToFavorite(), listenToUnfavorite();
+    listenToFavorite(), listenToUnfavorite(), listenCreate();
   },
 };

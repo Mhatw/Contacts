@@ -32,7 +32,7 @@ export default async function apiFetch( endpoint , { method, headers, body } = {
     } catch (error) {
       throw new Error(response.statusText);
     }
-    throw new Error(data.errors);
+    throw new Error( data.relation || data.errors );
   }
   // logout
   try {
