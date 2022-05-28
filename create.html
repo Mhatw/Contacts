@@ -1,52 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="titleLog">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="create.css" />
+    <title>Create new contact</title>
+  </head>
+  <body>
+    <header class="container is-max-desktop">
+      <a class="navbar-item" href="#">
         <h1>Create new contact</h1>
-      </div>
-      <div class ="linkOut">
-        <p><a href="">Logout</a></p>
-      </div>
+      </a>
+      <!-- <button class="button is-danger is-light is-small">logout</button> -->
     </header>
-    <main>
-      <div class="nameBox">
-        <input type="text" id="username" name="username">
-        <p>Error Message</p>
-    </div>
-        <div class="numberBox">
-          <input type="text" id="username" name="username">
-          <p>Error Message</p>
-      </div>
-          <div class="mailBox">
-            <input type="text" id="username" name="username">
-        </div>
-        <div class="relavBox">
-          <select name="relatives" id="relav-select">
-            <option value="">Relation</option>
-            <option value="dog">Family</option>
-            <option value="cat">Friends</option>
-            <option value="hamster">Work</option>
-            <option value="parrot">Acquaintance</option>
-        </select>
+
+    <main class="container is-max-desktop">
+      <!-- form -->
+      <form action="" class="form">
+        <div class="formBody">
+          <div class="nameBox control">
+            <input
+              class="input"
+              type="text"
+              id="nombre"
+              name="nombre"
+              placeholder="Name"
+              minlength="9"
+              required
+            /> 
+          </div>
+          <div class="numberBox control">
+            <input
+              class="input"
+              type="text"
+              id="phoneNum"
+              name="number"
+              placeholder="99999999"
+            />
+
+          </div>
+          <div class="passwordBox control">
+            <input
+              class="input"
+              type="password"
+              id="pass"
+              name="password"
+              placeholder="Password"
+              minlength="8"
+              required
+            />
+          </div>
+          <div class="select is-link">
+            <select>
+              <option>Relation</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Work">Work</option>
+              <option value="Acquaintance">Acquaintance</option>
+            </select>
+          </div>
         </div>
 
+        <div class="linksFooter field">
+          <div class="control">
+            <a class="button is-link is-light is-small">Cancel</a>
+          </div>
+          <div class="control">
+            <input
+              type="submit"
+              class="button is-link is-small"
+              value="Save"
+            />
+          </div>
+        </div>
+      </form>
     </main>
-    <footer>
-      <div class ="linksFooter">
-        <ul>
-          <li><a href="">Cancel</a></li>
-          <li><a href="">Save</a></li>
-        </ul>
-      </div>
-    </footer>
-  </div>
-</body>
+  </body>
 </html>
