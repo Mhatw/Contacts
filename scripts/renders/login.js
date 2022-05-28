@@ -70,6 +70,7 @@ function listenSubmitForm() {
     loadingPage();
     setTimeout(() => {
       DOMHandler.load(SignupPage);
+      LoginPage.state.loginError = null;
     }, 800);
   });
   $form.addEventListener("submit", async (event) => {
