@@ -1,5 +1,12 @@
-export const loginHtml = `
-<header class="container is-max-desktop">
+import DOMHandler from "../dom-handler.js";
+import { login } from "../services/sessions-service.js";
+
+// render login
+function renderLogin() {
+  // const { loginError } = this.state;
+  const { loginError } = LoginPage.state;
+  console.log(LoginPage.state, loginError ? "si" : "no");
+  return `<header class="container is-max-desktop">
 <a class="navbar-item" href="#">
   <h1>Login</h1>
 </a>
@@ -11,36 +18,98 @@ export const loginHtml = `
   <div class="formBody">
     <div class="mailBox control">
       <input
-        class="input"
+        class="input ${loginError ? "is-danger" : ""}"
         type="email"
         id="email"
         name="email"
         placeholder="email"
       />
-    </div>
-    <div class="passwordBox control">
+      </div>
+      
+      
+      <div class="passwordBox control">
       <input
-        class="input"
-        type="password"
-        name="password"
-        placeholder="password"
-        minlength="8"
-        required
+      class="input ${loginError ? "is-danger" : ""}"
+      type="password"
+      name="password"
+      placeholder="password"
+      minlength="8"
+      required
       />
-    </div>
+      </div>
+      ${
+        loginError
+          ? `<p class="tag is-danger is-light"> 😨 ${loginError}</p>`
+          : ""
+      }
   </div>
 
   <div class="linksFooter field">
     <div class="control">
-      <a class="button is-link is-light is-small">Signup</a>
+      <a class="button is-link is-light">Signup</a>
     </div>
     <div class="control">
-      <input
+      <button
         type="submit"
-        class="button is-link is-small"
-        value="Login"
-      />
+        class="button is-link"
+        id="submit-btn"
+      />Login</button>
     </div>
   </div>
 </form>
 </main>`;
+}
+
+const $ = (selector) => document.querySelector(selector);
+
+// function renderLogin() {
+//   $("body").innerHTML = loginHtml;
+// }
+
+// listener
+
+function listenSubmitForm() {
+  const $form = $(".form");
+
+  $form.addEventListener("submit", async (event) => {
+    $("#submit-btn").classList.toggle("is-loading");
+    try {
+      event.preventDefault();
+      const { email, password } = event.target;
+      const credentials = {
+        email: email.value,
+        password: password.value,
+      };
+
+      const user = await login(credentials);
+      // STORE.user = user;
+      console.log(credentials, user);
+
+      // await STORE.fetchCategories();
+      setTimeout(function () {
+        DOMHandler.load(homePage);
+      }, 1000);
+    } catch (error) {
+      LoginPage.state.loginError = error.message;
+      setTimeout(function () {
+        DOMHandler.reload();
+      }, 1000);
+    }
+  });
+}
+
+const LoginPage = {
+  toString() {
+    // return render.call(this)
+    return renderLogin();
+  },
+  addListeners() {
+    // listenSubmitForm.call(this)
+    return listenSubmitForm();
+  },
+  state: {
+    loginError: null,
+  },
+};
+
+export default LoginPage;
