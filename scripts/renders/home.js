@@ -2,15 +2,16 @@ import DOMHandler from "../dom-handler.js";
 import { editContacts } from "../services/contacts-services.js";
 import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
+import { cardHtml } from "./card.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
 function renderContact(contact) {
   return `
     <li>
-      <img src="" alt="">
-      <p>${contact.name}</p>
-      <a data-id=${contact.id}><i class="fas fa-star"></i></a>
+      <a data-id=${contact.id}>
+        ${cardHtml(contact)}
+      </a>
     </li>`;
 }
 
