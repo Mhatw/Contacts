@@ -8,7 +8,7 @@ function renderSignup() {
   const { SignupError } = SignupPage.state;
   return `<header class="container is-max-desktop">
 <a class="navbar-item" href="#">
-  <h1>Sign Up</h1>
+  <h1>📕 Sign Up</h1>
 </a>
 <!-- <button class="button is-danger is-light is-small">logout</button> -->
 </header>
