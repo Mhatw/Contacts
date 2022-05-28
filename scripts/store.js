@@ -24,6 +24,17 @@ function deleteContact(id) {
   this.favorites = this.favorites.filter( contact => contact.id != id );
 }
 
+function favoriteContact(id) {
+  this.favorites.push(
+    this.contacts.find( c => c.id == id)
+  )
+}
+function unfavoriteContact(id) {
+  this.favorites.splice(
+    this.contacts.find( c => c.id == id)
+  )
+}
+
 // const STORE = {
 //   user: null,
 //   contacts: [],
@@ -38,7 +49,9 @@ const STORE = {
   contacts: [],
   favorites: [],
   fetchContacts,
-  deleteContact
+  deleteContact,
+  favoriteContact,
+  unfavoriteContact
 };
 
 export default STORE;

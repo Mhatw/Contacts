@@ -8,7 +8,7 @@ const DOMHandler = (function (parentSelector) {
     load(module) {
       this.module = module;
       parent.innerHTML = module;
-      // module.addListeners();
+      module.addListeners();
     },
     reload() {
       this.load(this.module);

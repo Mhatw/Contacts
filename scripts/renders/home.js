@@ -1,3 +1,5 @@
+import DOMHandler from "../dom-handler.js";
+import { editContacts } from "../services/contacts-services.js";
 import STORE from "../store.js";
 
 function renderContact(contact) {
@@ -5,16 +7,15 @@ function renderContact(contact) {
     <li>
       <img src="" alt="">
       <p>${contact.name}</p>
-      <i class="fas fa-star" data-id=${contact.id}></i>
+      <a data-id=${contact.id}><i class="fas fa-star"></i></a>
     </li>`;
 }
 
 function renderFavorites() {
-  console.log(STORE);
   if (STORE.favorites.length > 0) {
     return `
     <h3>FAVORITES(${STORE.favorites.length})</h3>
-    <ul>
+    <ul class="js-favorite-list">
       ${STORE.favorites.map(contact => renderContact(contact)).join("")}
     </ul>
     <hr>
@@ -36,20 +37,55 @@ function render() {
       <main class="container is-max-desktop">
         ${renderFavorites()}
         <h3>CONTACTS(${STORE.contacts.length})</h3>
-        <ul>
+        <ul class="js-contact-list">
           ${STORE.contacts.map(contact => renderContact(contact)).join("")}
         </ul>
       </main>
       `;
 }
 
+function listenToFavorite() {
+  const ul = document.querySelector(".js-contact-list")
+
+  ul.addEventListener("click", async (event) => {
+    event.preventDefault()
+    
+    const favoriteLink = event.target.closest("[data-id]")
+    if(!favoriteLink) return;
+
+    const id = favoriteLink.dataset.id
+    await editContacts(id, {favorite: true}) // request api
+    STORE.favoriteContact(id)
+    DOMHandler.reload()
+  })
+}
+function listenToUnfavorite() {
+  try {
+    const ul = document.querySelector(".js-favorite-list")
+  
+    ul.addEventListener("click", async (event) => {
+      event.preventDefault()
+      
+      const favoriteLink = event.target.closest("[data-id]")
+      if(!favoriteLink) return;
+  
+      const id = favoriteLink.dataset.id
+      await editContacts(id, {favorite: false}) // request api
+      STORE.unfavoriteContact(id)
+      DOMHandler.reload()
+    })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 export const HomePage = {
       toString() {
         return render()
+      },
+      addListeners() {
+        listenToFavorite(),
+        listenToUnfavorite()
       }
-      // addListeners() {
-        // listenNavigation();
-        // if(["expense", "income"].includes(STORE.currenTab)) Expenses.addListeners();
-        // if (STORE.currenTab === "profile") Profile.addListeners();
-      // }
     }
