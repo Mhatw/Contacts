@@ -47,6 +47,7 @@ function render() {
           ${STORE.contacts.map((contact) => renderContact(contact)).join("")}
         </ul>
   </div>
+    <a id="create-btn" class="create-btn delete is-large has-background-link">Create Contact</a>
       </main>
       `;
 }
