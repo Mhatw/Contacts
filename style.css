@@ -29,11 +29,37 @@ header {
 
 header > a > h1,
 header > div > h1 {
+  /* transition: 1s cubic-bezier(0, 0.54, 1, 0.54); */
   font-family: "Reem Kufi", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   /* word-spacing: 1rem; */
   color: #000;
+}
+header > a:hover > h1,
+header > div:hover > h1 {
+  animation-name: logo-breath;
+  animation-duration: 2s;
+  animation-delay: 0.1s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+@keyframes logo-breath {
+  0% {
+    color: rgb(0, 132, 255);
+    left: 0px;
+    top: 0px;
+  }
+  50% {
+    color: rgb(2, 99, 190);
+    left: 200px;
+    top: 200px;
+  }
+  100% {
+    color: rgb(0, 132, 255);
+    left: 0px;
+    top: 0px;
+  }
 }
 
 /* main */
