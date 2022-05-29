@@ -11,6 +11,7 @@ export const cardHtml = (contact, type) => {
       <div data-id=${
         contact.id
       } class="box container is-max-desktop contactCard">
+      <div id="contact-card-left">
         <!-- img perfil -->
         <figure class="image is-48x48">
           <img
@@ -20,6 +21,7 @@ export const cardHtml = (contact, type) => {
         </figure>
         <!-- name -->
         <p class="is-6">${contact.name}</p>
+      </div>
         <!-- icon -->
         <span class="icon" id="star-${type}">
           <i class="fas fa-star"></i>

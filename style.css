@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap");
 @import url(./css/loading.css);
 @import url(./css/scrollbar.css);
+@import url(./css/card.css);
 
 body {
   background-color: #fafafa;
@@ -52,34 +53,6 @@ main {
   white-space: normal;
   overflow: scroll;
   scrollbar-width: none;
-}
-
-/* contact card */
-.cardDiv {
-  padding: 0 2rem;
-}
-.contactCard {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.contactCard > figure > img {
-  border-radius: 100%;
-}
-
-.contactCard > p {
-  text-align: left;
-  width: 80%;
-  padding: 0 2rem;
-  white-space: normal;
-  overflow: hidden;
-  color: #363636;
-  font-weight: 600;
-  line-height: 1.125;
-  word-break: break-word;
 }
 
 /* forms */
@@ -136,25 +109,4 @@ main {
   align-items: center;
   position: fixed;
   transition: 0s;
-}
-
-#star-common {
-  color: rgb(29, 29, 29);
-}
-#star-favorite {
-  animation-name: example;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-in;
-  color: rgb(255, 191, 0);
-}
-
-@keyframes example {
-  from {
-    color: rgb(255, 153, 0);
-    transform: scale(1);
-  }
-  to {
-    color: rgb(255, 191, 0);
-    transform: scale(1.2);
-  }
 }
