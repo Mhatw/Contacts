@@ -82,7 +82,6 @@ function listenLogout() {
 }
 
 function listenToFavorite() {
-  calcMainAddBtn();
   const ul = document.querySelector(".js-contact-list");
   ul.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -129,28 +128,26 @@ function listenCreate() {
   });
 }
 function listenContact() {
-  
   // const contactCard = document.querySelector("#contact-card");
   // contactCard.addEventListener('click', (event) => {
   const ul = document.querySelector(".js-favorite-list");
 
   ul.addEventListener("click", async (event) => {
-      event.preventDefault();
+    event.preventDefault();
     try {
-
       const current = event.target.closest("[data-id]");
       if (!current) return;
 
       const id = current.dataset.id;
-      let currentContact = STORE.contacts.find(c => c.id == id)
-      
-      STORE.currentContact = currentContact
+      let currentContact = STORE.contacts.find((c) => c.id == id);
+
+      STORE.currentContact = currentContact;
       console.log(STORE.currentContact);
-      DOMHandler.load(ContactDetail)
+      DOMHandler.load(ContactDetail);
     } catch (error) {
       console.log(error);
     }
-  })
+  });
 }
 export const HomePage = {
   toString() {
@@ -158,6 +155,6 @@ export const HomePage = {
   },
   addListeners() {
     // listenToFavorite(), listenToUnfavorite(), listenCreate();
-     listenCreate(), listenContact(), listenLogout();
+    listenCreate(), listenContact(), calcMainAddBtn(), listenLogout();
   },
 };
