@@ -134,7 +134,6 @@ function openContact() {
   let contacts = document.querySelectorAll("#contact-card-left");
 
   contacts.forEach((contact) => {
-    console.log(contact);
     contact.addEventListener("click", async (event) => {
       const contactCardSelected = event.target.closest("[data-id]");
       // if (!contactCardSelected) return;

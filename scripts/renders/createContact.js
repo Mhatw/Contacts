@@ -78,7 +78,7 @@ function renderCreate() {
           type="submit"
           class="button is-link"
           id="save-btn"
-        />Sapeeee</button>
+        />Save</button>
       </div>
     </div>
   </form>

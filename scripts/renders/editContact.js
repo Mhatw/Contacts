@@ -9,11 +9,11 @@ import LoginPage from "./login.js";
 
 function renderEdit() {
   let id = STORE.currentContact;
-  console.log("asdasd", id, STORE);
   const { createError } = EditPage.state;
+  console.log(createError);
   return `
   <div class="container">
-    <header>
+    <header class="container is-max-desktop">
       <div class="titleLog">
         <h1>📕 Edit Contact </h1>
       </div>
@@ -21,7 +21,7 @@ function renderEdit() {
         <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
       </div>
     </header>
-    <main>
+    <main class="container is-max-desktop">
     <form action="" class="form">
       <div class="formBody">
       
@@ -81,7 +81,7 @@ function renderEdit() {
           type="submit"
           class="button is-link"
           id="save-btn"
-        />Sapeeee</button>
+        />Save</button>
       </div>
     </div>
   </form>
@@ -132,7 +132,7 @@ function listenSubmitForm() {
     try {
       event.preventDefault();
       const { name, number, email, relation } = event.target;
-
+      console.log(name.value, number.value, email.value, relation.value);
       const credentials = {
         name: name.value,
         number: number.value,
@@ -142,7 +142,7 @@ function listenSubmitForm() {
 
       const contact = await editContacts(id, credentials);
       let a = STORE.contacts;
-      let info = a.find((e) => e.id == "794");
+      let info = a.find((e) => e.id == id);
       const name2 = document.querySelector("#name");
       const number2 = document.querySelector("#number");
       const email2 = document.querySelector("#email");

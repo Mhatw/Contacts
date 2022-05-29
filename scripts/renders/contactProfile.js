@@ -8,7 +8,6 @@ import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
 let id = STORE.currentContact;
-console.log("this", id);
 const avatar = (current) =>
   ({
     Friends: "../../assets/friend.svg",
@@ -30,25 +29,28 @@ function renderProfile() {
   <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
   </header>
   <main class="container is-max-desktop">
-  <figure class="image is-48x48">
-          <img
+  <div class="profile">
+  <div class="profileBody">
+  <!-- img -->
+  <figure class="image is-128x128">
+          <img 
             src="${avatar(contact.relation)}"
             alt="Placeholder image"
           />
         </figure>
-  <h2>${contact.name}</h2>
-  <span>${contact.relation}</span>
+  <h2 class="profileName">${contact.name}</h2>
+  <span class="profileRelation">${contact.relation}</span>
 
-  <div>
-    
-      <p>Number: <span>${contact.number}</span></p>
-      <p>Email: <span>${contact.email}</span></p>
+  <div class="profileSecond">
+
+      <p>Number: <span class="profileSecondInfo">${contact.number}</span></p>
+      <p>Email: <span class="profileSecondInfo">${contact.email}</span></p>
     
   </div>
-
+  </div>
   <div class="linksFooter field">
       <div class="control">
-        <a id="back-btn" class="button is-link is-inverted">Back</a>
+        <a id="back-btn" class="button is-link is-light">Back</a>
       </div>
       <div class="control">
         <a id="delete-btn" title="this feature is in progress" class="button is-danger " Disabled>Delete</a>
@@ -56,6 +58,7 @@ function renderProfile() {
       <div class="control">
         <a id="edit-btn" class="button is-link">Edit</a>
       </div>
+    </div>
     </div>
   </main>`;
 }
