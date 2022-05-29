@@ -1,3 +1,10 @@
+import DOMHandler from "../dom-handler.js";
+import { deleteContacts } from "../services/contacts-services.js";
+import STORE from "../store.js";
+import { HomePage } from "./home.js";
+
+let contact = STORE.currentContact;
+console.log(contact);
 const avatar = (current) =>
   ({
     Friends: "../../assets/friend.svg",
@@ -6,7 +13,7 @@ const avatar = (current) =>
     Acquaintance: "../../assets/acq.svg",
   }[current]);
 
-function renderProfile(contact) {
+function renderProfile() {
   return `
   <!-- header -->
   <header class="container is-max-desktop">
@@ -44,3 +51,58 @@ function renderProfile(contact) {
     </div>
   `
 }
+function listenLogout() {
+  const $logoutBtn = document.querySelector("#logout-btn");
+  $logoutBtn.addEventListener("click", async (event) => {
+    event.preventDefault();
+    await logout();
+    setTimeout(function () {
+      loadingPage();
+      setTimeout(() => {
+        DOMHandler.load(LoginPage);
+      }, 500);
+    }, 500);
+  });
+}
+function listenBack() {
+  const backBtn = document.querySelector("#back-btn");
+  backBtn.addEventListener('click', (event) => { 
+    event.preventDefault();
+    DOMHandler.load(HomePage);
+  })
+}
+function listenDelete() {
+  const deleteBtn = document.querySelector("#delete-btn");
+  deleteBtn.addEventListener('click', async (event) => { 
+    
+    try {
+      event.preventDefault();
+      await deleteContacts(STORE.idContact);
+      STORE.deleteContact(STORE.idContact);
+      DOMHandler.load(HomePage);
+    } catch (error) {
+      console.log(error);
+    }
+  })
+}
+function listenEdit() {
+  const editBtn = document.querySelector("#edit-btn");
+  editBtn.addEventListener('click', (event) => {
+    try {
+      event.preventDefault();
+      DOMHandler.load(HomePage);
+    } catch (error) {
+      console.log(error);
+    }
+  })
+}
+const ContactDetail = {
+  toString() {
+    return renderProfile();
+  },
+  addListeners() {
+    return listenBack(), listenDelete(), listenEdit(),listenLogout();
+  }
+};
+
+export default ContactDetail;

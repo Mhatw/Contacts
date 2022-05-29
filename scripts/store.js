@@ -48,6 +48,7 @@ const STORE = {
   user: null,
   contacts: [],
   favorites: [],
+  currentContact: null,
   fetchContacts,
   deleteContact,
   favoriteContact,
