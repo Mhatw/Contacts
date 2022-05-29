@@ -46,7 +46,7 @@ function render() {
   <main class="container is-max-desktop">
   <div class="container is-max-desktop cardDiv">
         ${renderFavorites()}
-        <h3 class="tag is-info is-light">CONTACTS (${
+        <h3 class="tag is-info is-light">ALL CONTACTS (${
           STORE.contacts.length
         })</h3>
         <ul class="js-contact-list">
