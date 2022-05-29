@@ -85,7 +85,7 @@ function listenSubmitForm() {
 
       const user = await signup(credentials);
       // STORE.user = user;
-      console.log(credentials, user);
+      // console.log(credentials, user);
 
       // await STORE.fetchCategories();
       setTimeout(function () {

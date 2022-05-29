@@ -8,12 +8,12 @@ import CreatePage from "./createContact.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
-function renderContact(contact) {
+function renderContact(contact, type = "common") {
   return `
     <li>
-      <a data-id=${contact.id} id="contact-card">
-        ${cardHtml(contact)}
-      </a>
+
+        ${cardHtml(contact, type)}
+
     </li>`;
 }
 
@@ -22,7 +22,9 @@ function renderFavorites() {
     return `
     <h3 class="tag is-info is-light">FAVORITES (${STORE.favorites.length})</h3>
     <ul class="js-favorite-list">
-      ${STORE.favorites.map((contact) => renderContact(contact)).join("")}
+      ${STORE.favorites
+        .map((contact) => renderContact(contact, "favorite"))
+        .join("")}
     </ul>
     <hr>
     `;
@@ -32,6 +34,7 @@ function renderFavorites() {
 }
 
 function render() {
+  console.log("favorites", STORE);
   return `
   <!-- header -->
   <header class="container is-max-desktop">
@@ -82,39 +85,37 @@ function listenLogout() {
 }
 
 function listenToFavorite() {
-  calcMainAddBtn();
-  const ul = document.querySelector(".js-contact-list");
-  ul.addEventListener("click", async (event) => {
-    event.preventDefault();
+  let stars = document.querySelectorAll("#star-common");
 
-    const favoriteLink = event.target.closest("[data-id]");
-    if (!favoriteLink) return;
-
-    const id = favoriteLink.dataset.id;
-    await editContacts(id, { favorite: true }); // request api
-    STORE.favoriteContact(id);
-    DOMHandler.reload();
-  });
-}
-function listenToUnfavorite() {
-  try {
-    const ul = document.querySelector(".js-favorite-list");
-
-    ul.addEventListener("click", async (event) => {
-      event.preventDefault();
-
+  stars.forEach((star) => {
+    star.addEventListener("click", async (event) => {
       const favoriteLink = event.target.closest("[data-id]");
-      if (!favoriteLink) return;
-
+      // if (!favoriteLink) return;
       const id = favoriteLink.dataset.id;
-      await editContacts(id, { favorite: false }); // request api
-      STORE.unfavoriteContact(id);
+
+      if (STORE.favorites.find((e) => e.id == id)) return;
+      await editContacts(id, { favorite: true }); // request api
+      STORE.favoriteContact(id);
       DOMHandler.reload();
     });
-  } catch (error) {
-    console.log(error);
-  }
+  });
 }
+function listenToUnFavorite() {
+  let stars = document.querySelectorAll("#star-favorite");
+
+  stars.forEach((star) => {
+    star.addEventListener("click", async (event) => {
+      const favoriteLink = event.target.closest("[data-id]");
+      // // if (!favoriteLink) return;
+      const id = favoriteLink.dataset.id;
+
+      await editContacts(id, { favorite: false }); // request api
+      STORE.unFavoriteContact(id);
+      DOMHandler.reload();
+    });
+  });
+}
+
 function listenCreate() {
   const createBtn = document.querySelector("#create-btn");
   createBtn.addEventListener("click", (event) => {
@@ -129,35 +130,36 @@ function listenCreate() {
   });
 }
 function listenContact() {
-  
   // const contactCard = document.querySelector("#contact-card");
   // contactCard.addEventListener('click', (event) => {
   const ul = document.querySelector(".js-favorite-list");
 
   ul.addEventListener("click", async (event) => {
-      event.preventDefault();
+    event.preventDefault();
     try {
-
       const current = event.target.closest("[data-id]");
       if (!current) return;
 
       const id = current.dataset.id;
-      let currentContact = STORE.contacts.find(c => c.id == id)
-      
-      STORE.currentContact = currentContact
-      console.log(STORE.currentContact);
-      DOMHandler.load(ContactDetail)
+      let currentContact = STORE.contacts.find((c) => c.id == id);
+
+      STORE.currentContact = currentContact;
+      DOMHandler.load(ContactDetail);
     } catch (error) {
       console.log(error);
     }
-  })
+  });
 }
 export const HomePage = {
   toString() {
     return render();
   },
   addListeners() {
-    // listenToFavorite(), listenToUnfavorite(), listenCreate();
-     listenCreate(), listenContact(), listenLogout();
+    listenCreate(),
+      // listenContact(),
+      calcMainAddBtn(),
+      listenToUnFavorite(),
+      listenLogout(),
+      listenToFavorite();
   },
 };

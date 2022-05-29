@@ -1,9 +1,11 @@
 import { getContacts } from "./services/contacts-services.js";
 
 async function fetchContacts() {
-  const all_contacts = await getContacts()
+  const all_contacts = await getContacts();
   this.contacts = [...all_contacts];
-  this.favorites = all_contacts.filter( contact => contact.favorite === true);
+  this.favorites = all_contacts
+    .filter((contact) => contact.favorite === true)
+    .reverse();
 }
 
 // function currentContacts(){
@@ -20,19 +22,18 @@ async function fetchContacts() {
 // }
 
 function deleteContact(id) {
-  this.contacts = this.contacts.filter( contact => contact.id != id );
-  this.favorites = this.favorites.filter( contact => contact.id != id );
+  this.contacts = this.contacts.filter((contact) => contact.id != id);
+  this.favorites = this.favorites.filter((contact) => contact.id != id);
 }
 
 function favoriteContact(id) {
-  this.favorites.push(
-    this.contacts.find( c => c.id == id)
-  )
+  this.favorites.push(this.contacts.find((c) => c.id == id));
 }
-function unfavoriteContact(id) {
+function unFavoriteContact(id) {
   this.favorites.splice(
-    this.contacts.find( c => c.id == id)
-  )
+    this.favorites.findIndex((e) => e.id == id),
+    1
+  );
 }
 
 // const STORE = {
@@ -44,7 +45,7 @@ function unfavoriteContact(id) {
 //   currentContacts,
 //   deleteContact
 // };
-const STORE = {
+let STORE = {
   user: null,
   contacts: [],
   favorites: [],
@@ -52,7 +53,7 @@ const STORE = {
   fetchContacts,
   deleteContact,
   favoriteContact,
-  unfavoriteContact
+  unFavoriteContact,
 };
 
 export default STORE;
