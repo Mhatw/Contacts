@@ -138,9 +138,7 @@ function openContact() {
       const contactCardSelected = event.target.closest("[data-id]");
       // if (!contactCardSelected) return;
       const id = contactCardSelected.dataset.id;
-      console.log(id);
       STORE.currentContact = id;
-      console.log(STORE);
       setTimeout(function () {
         loadingPage();
         setTimeout(() => {
