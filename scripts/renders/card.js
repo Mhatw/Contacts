@@ -6,7 +6,7 @@ const avatar = (current) =>
     Acquaintance: "../../assets/acq.svg",
   }[current]);
 
-export const cardHtml = (contact) => {
+export const cardHtml = (contact, type) => {
   return `
       <div class="box container is-max-desktop contactCard">
         <!-- img perfil -->
@@ -19,7 +19,7 @@ export const cardHtml = (contact) => {
         <!-- name -->
         <p class="is-6">${contact.name}</p>
         <!-- icon -->
-        <span class="icon">
+        <span class="icon" id="star-${type}">
           <i class="fas fa-star"></i>
         </span>
       </div>`;

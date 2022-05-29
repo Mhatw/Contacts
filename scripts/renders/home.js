@@ -8,11 +8,11 @@ import CreatePage from "./createContact.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
-function renderContact(contact) {
+function renderContact(contact, type = "common") {
   return `
     <li>
       <a data-id=${contact.id} id="contact-card">
-        ${cardHtml(contact)}
+        ${cardHtml(contact, type)}
       </a>
     </li>`;
 }
@@ -22,7 +22,9 @@ function renderFavorites() {
     return `
     <h3 class="tag is-info is-light">FAVORITES (${STORE.favorites.length})</h3>
     <ul class="js-favorite-list">
-      ${STORE.favorites.map((contact) => renderContact(contact)).join("")}
+      ${STORE.favorites
+        .map((contact) => renderContact(contact, "favorite"))
+        .join("")}
     </ul>
     <hr>
     `;
@@ -82,17 +84,15 @@ function listenLogout() {
 }
 
 function listenToFavorite() {
-  const ul = document.querySelector(".js-contact-list");
-  ul.addEventListener("click", async (event) => {
-    event.preventDefault();
-
-    const favoriteLink = event.target.closest("[data-id]");
-    if (!favoriteLink) return;
-
-    const id = favoriteLink.dataset.id;
-    await editContacts(id, { favorite: true }); // request api
-    STORE.favoriteContact(id);
-    DOMHandler.reload();
+  const star = document.querySelector("#star-card");
+  star.addEventListener("click", (event) => {
+    // event.preventDefault();
+    // const favoriteLink = event.target.closest("[data-id]");
+    // if (!favoriteLink) return;
+    // const id = favoriteLink.dataset.id;
+    // await editContacts(id, { favorite: true }); // request api
+    // STORE.favoriteContact(id);
+    // DOMHandler.reload();
   });
 }
 function listenToUnfavorite() {
@@ -155,6 +155,10 @@ export const HomePage = {
   },
   addListeners() {
     // listenToFavorite(), listenToUnfavorite(), listenCreate();
-    listenCreate(), listenContact(), calcMainAddBtn(), listenLogout();
+    listenCreate(),
+      listenContact(),
+      calcMainAddBtn(),
+      listenLogout(),
+      listenToFavorite();
   },
 };
