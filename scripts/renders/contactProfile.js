@@ -48,13 +48,13 @@ function renderProfile() {
 
   <div class="linksFooter field">
       <div class="control">
-        <a id="back-btn" class="button is-link is-light">Back</a>
+        <a id="back-btn" class="button is-link is-inverted">Back</a>
       </div>
       <div class="control">
-        <a id="delete-btn" class="button is-link is-light">Delete</a>
+        <a id="delete-btn" title="this feature is in progress" class="button is-danger " Disabled>Delete</a>
       </div>
       <div class="control">
-        <a id="edit-btn" class="button is-link is-light">Edit</a>
+        <a id="edit-btn" class="button is-link">Edit</a>
       </div>
     </div>
   </main>`;

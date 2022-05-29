@@ -1,0 +1,41 @@
+/* forms */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.formBody {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.mailBox,
+.passwordBox {
+  margin-bottom: 1rem;
+  width: 80%;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mailBox > input,
+.passwordBox > input {
+  width: 100%;
+  max-width: 360px;
+}
+.passwordBox > select {
+  width: 100%;
+  max-width: 360px;
+}
+.linksFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+}

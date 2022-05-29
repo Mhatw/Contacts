@@ -27,7 +27,7 @@ function renderEdit() {
       
       <div class="mailBox control">
       <input
-        class="input is-warning ${createError ? "is-danger" : ""}"
+        class="input is-info ${createError ? "is-danger" : ""}"
         type="name"
         id="name"
         name="name"
@@ -36,7 +36,7 @@ function renderEdit() {
       </div>
       <div class="mailBox control">
         <input
-          class="input is-warning ${createError ? "is-danger" : ""}"
+          class="input is-info ${createError ? "is-danger" : ""}"
           maxlength="9"
           type="tel"
           id="number"
@@ -46,7 +46,7 @@ function renderEdit() {
         </div>
         <div class="mailBox control">
         <input
-          class="input is-warning ${createError ? "is-danger" : ""} "
+          class="input is-info ${createError ? "is-danger" : ""} "
           type="email"
           id="email"
           name="email"
@@ -54,8 +54,8 @@ function renderEdit() {
         />
         </div>
         
-        <div class="passwordBox select  ">
-          <select name="relation" class="is-warning ${
+        <div class="passwordBox select is-info">
+          <select name="relation" class="${
             createError ? "is-danger" : ""
           }" id="relation" required>
             <option value="" disabled selected hidden>Relation</option>
