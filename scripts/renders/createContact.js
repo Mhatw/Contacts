@@ -54,7 +54,7 @@ function renderCreate() {
         <div class="passwordBox select ">
           <select name="relation" class="${
             createError ? "is-danger" : ""
-          }" id="relation">
+          }" id="relation" required>
             <option value="" disabled selected hidden>Relation</option>
             <option value="Family">Family</option>
             <option value="Friends">Friends</option>

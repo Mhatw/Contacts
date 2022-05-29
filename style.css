@@ -55,11 +55,15 @@ main {
 }
 
 /* contact card */
+.cardDiv {
+  padding: 0 2rem;
+}
 .contactCard {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .contactCard > figure > img {

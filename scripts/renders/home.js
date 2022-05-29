@@ -19,7 +19,7 @@ function renderContact(contact) {
 function renderFavorites() {
   if (STORE.favorites.length > 0) {
     return `
-    <h3>FAVORITES(${STORE.favorites.length})</h3>
+    <h3 class="tag is-info is-light">FAVORITES (${STORE.favorites.length})</h3>
     <ul class="js-favorite-list">
       ${STORE.favorites.map((contact) => renderContact(contact)).join("")}
     </ul>
@@ -34,15 +34,17 @@ function render() {
   return `
   <!-- header -->
   <header class="container is-max-desktop">
-  <a class="navbar-item" href="#">
+  <a class="navbar-item" href="../../index.html">
   <h1>📕 Contactable</h1>
   </a>
   <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
   </header>
   <main class="container is-max-desktop">
-  <div>
+  <div class="container is-max-desktop cardDiv">
         ${renderFavorites()}
-        <h3>CONTACTS(${STORE.contacts.length})</h3>
+        <h3 class="tag is-info is-light">CONTACTS (${
+          STORE.contacts.length
+        })</h3>
         <ul class="js-contact-list">
           ${STORE.contacts.map((contact) => renderContact(contact)).join("")}
         </ul>
