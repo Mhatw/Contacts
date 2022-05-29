@@ -12,7 +12,7 @@ function renderEdit() {
   const { createError } = EditPage.state;
   console.log(createError);
   return `
-  <div class="container">
+
     <header class="container is-max-desktop">
       <div class="titleLog">
         <h1>📕 Edit Contact </h1>

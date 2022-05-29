@@ -9,7 +9,7 @@ import LoginPage from "./login.js";
 function renderCreate() {
   const { createError } = CreatePage.state;
   return `
-  <div class="container">
+  
     <header>
       <div class="titleLog">
         <h1>📕 Create new contact</h1>

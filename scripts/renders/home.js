@@ -64,7 +64,7 @@ function calcMainAddBtn() {
   let height = box.offsetHeight;
   createBtn.style.transform = `translate(${
     width / 2 - createBtn.offsetWidth
-  }px,${height - createBtn.offsetHeight * 2}px)`;
+  }px,${height - createBtn.offsetHeight * 2.5}px)`;
   // console.log(createBtn.style.transform);
 }
 

@@ -7,11 +7,19 @@
   height: 100%;
 }
 .profileBody {
-  margin-top: 4rem;
+  margin-top: 2rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  white-space: normal;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+@media (orientation: landscape) {
+  .profileBody {
+    margin-top: 0rem;
+  }
 }
 
 .profileName {
@@ -27,22 +35,21 @@
   font-family: "Reem Kufi", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #7e7e7e;
+  color: #b2b2b2;
   margin-bottom: 2rem;
 }
 
 .profileSecond {
   display: flex;
   flex-direction: column;
-  color: #7e7e7e;
+  color: #b2b2b2;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #7e7e7e;
   gap: 1rem;
   /* background-color: #ffffff; */
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
-  border: 2px solid #f9f9f9;
+  /* border: 2px solid #f9f9f9; */
 }
 .profileSecondInfo {
   /* font-family: "Reem Kufi", sans-serif; */

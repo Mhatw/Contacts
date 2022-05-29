@@ -3,8 +3,9 @@
 svg.tea {
   --secondary: #33406f;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: calc(50% - 10px);
+  /* width="37" height="48" */
 }
 svg.tea #teabag {
   transform-origin: top center;
