@@ -34,7 +34,7 @@ function renderFavorites() {
 }
 
 function render() {
-  console.log("favorites", STORE);
+  // console.log("favorites", STORE);
   return `
   <!-- header -->
   <header class="container is-max-desktop">
@@ -46,7 +46,7 @@ function render() {
   <main class="container is-max-desktop">
   <div class="container is-max-desktop cardDiv">
         ${renderFavorites()}
-        <h3 class="tag is-info is-light">CONTACTS (${
+        <h3 class="tag is-info is-light">ALL CONTACTS (${
           STORE.contacts.length
         })</h3>
         <ul class="js-contact-list">
@@ -129,27 +129,49 @@ function listenCreate() {
     }, 500);
   });
 }
-function listenContact() {
-  // const contactCard = document.querySelector("#contact-card");
-  // contactCard.addEventListener('click', (event) => {
-  const ul = document.querySelector(".js-favorite-list");
 
-  ul.addEventListener("click", async (event) => {
-    event.preventDefault();
-    try {
-      const current = event.target.closest("[data-id]");
-      if (!current) return;
+function openContact() {
+  let contacts = document.querySelectorAll("#contact-card-left");
 
-      const id = current.dataset.id;
-      let currentContact = STORE.contacts.find((c) => c.id == id);
-
-      STORE.currentContact = currentContact;
-      DOMHandler.load(ContactDetail);
-    } catch (error) {
-      console.log(error);
-    }
+  contacts.forEach((contact) => {
+    contact.addEventListener("click", async (event) => {
+      const contactCardSelected = event.target.closest("[data-id]");
+      // if (!contactCardSelected) return;
+      const id = contactCardSelected.dataset.id;
+      console.log(id);
+      STORE.currentContact = id;
+      console.log(STORE);
+      setTimeout(function () {
+        loadingPage();
+        setTimeout(() => {
+          DOMHandler.load(ContactDetail);
+        }, 500);
+      }, 500);
+    });
   });
 }
+
+// function listenContact() {
+//   // const contactCard = document.querySelector("#contact-card");
+//   // contactCard.addEventListener('click', (event) => {
+//   const ul = document.querySelector(".js-favorite-list");
+
+//   ul.addEventListener("click", async (event) => {
+//     event.preventDefault();
+//     try {
+//       const current = event.target.closest("[data-id]");
+//       if (!current) return;
+
+//       const id = current.dataset.id;
+//       let currentContact = STORE.contacts.find((c) => c.id == id);
+
+//       STORE.currentContact = currentContact;
+//       DOMHandler.load(ContactDetail);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   });
+// }
 export const HomePage = {
   toString() {
     return render();
@@ -160,6 +182,7 @@ export const HomePage = {
       calcMainAddBtn(),
       listenToUnFavorite(),
       listenLogout(),
-      listenToFavorite();
+      listenToFavorite(),
+      openContact();
   },
 };

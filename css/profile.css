@@ -1,0 +1,52 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.profileBody {
+  margin-top: 4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileName {
+  margin-top: 1rem;
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000000;
+  /* color: ; */
+}
+
+.profileRelation {
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #7e7e7e;
+  margin-bottom: 2rem;
+}
+
+.profileSecond {
+  display: flex;
+  flex-direction: column;
+  color: #7e7e7e;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #7e7e7e;
+  gap: 1rem;
+  /* background-color: #ffffff; */
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid #f9f9f9;
+}
+.profileSecondInfo {
+  /* font-family: "Reem Kufi", sans-serif; */
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #171717;
+}
