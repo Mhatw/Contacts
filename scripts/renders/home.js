@@ -3,6 +3,7 @@ import { editContacts } from "../services/contacts-services.js";
 import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import { cardHtml } from "./card.js";
+import ContactDetail from "./contactProfile.js";
 import CreatePage from "./createContact.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
@@ -10,7 +11,7 @@ import LoginPage from "./login.js";
 function renderContact(contact) {
   return `
     <li>
-      <a data-id=${contact.id}>
+      <a data-id=${contact.id} id="contact-card">
         ${cardHtml(contact)}
       </a>
     </li>`;
@@ -66,9 +67,7 @@ function calcMainAddBtn() {
 
 window.addEventListener("resize", calcMainAddBtn);
 
-function listenToFavorite() {
-  calcMainAddBtn();
-  const ul = document.querySelector(".js-contact-list");
+function listenLogout() {
   const $logoutBtn = document.querySelector("#logout-btn");
   $logoutBtn.addEventListener("click", async (event) => {
     event.preventDefault();
@@ -80,6 +79,11 @@ function listenToFavorite() {
       }, 500);
     }, 500);
   });
+}
+
+function listenToFavorite() {
+  calcMainAddBtn();
+  const ul = document.querySelector(".js-contact-list");
   ul.addEventListener("click", async (event) => {
     event.preventDefault();
 
@@ -124,11 +128,36 @@ function listenCreate() {
     }, 500);
   });
 }
+function listenContact() {
+  
+  // const contactCard = document.querySelector("#contact-card");
+  // contactCard.addEventListener('click', (event) => {
+  const ul = document.querySelector(".js-favorite-list");
+
+  ul.addEventListener("click", async (event) => {
+      event.preventDefault();
+    try {
+
+      const current = event.target.closest("[data-id]");
+      if (!current) return;
+
+      const id = current.dataset.id;
+      let currentContact = STORE.contacts.find(c => c.id == id)
+      
+      STORE.currentContact = currentContact
+      console.log(STORE.currentContact);
+      DOMHandler.load(ContactDetail)
+    } catch (error) {
+      console.log(error);
+    }
+  })
+}
 export const HomePage = {
   toString() {
     return render();
   },
   addListeners() {
-    listenToFavorite(), listenToUnfavorite(), listenCreate();
+    // listenToFavorite(), listenToUnfavorite(), listenCreate();
+     listenCreate(), listenContact(), listenLogout();
   },
 };
