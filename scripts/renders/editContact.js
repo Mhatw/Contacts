@@ -2,11 +2,14 @@ import DOMHandler from "../dom-handler.js";
 import { createContacts, editContacts } from "../services/contacts-services.js";
 import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
+import ContactDetail from "./contactProfile.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
 function renderEdit() {
+  let id = STORE.currentContact;
+  console.log("asdasd", id, STORE);
   const { createError } = EditPage.state;
   return `
   <div class="container">
@@ -87,8 +90,10 @@ function renderEdit() {
 }
 
 function getInfoContact() {
+  let id = STORE.currentContact;
+  console.log("asdasd33", id, STORE);
   let a = STORE.contacts;
-  const info = a.find(e => e.id == "794")
+  const info = a.find((e) => e.id == id);
   const name = document.querySelector("#name");
   const number = document.querySelector("#number");
   const email = document.querySelector("#email");
@@ -98,7 +103,6 @@ function getInfoContact() {
   email.value = info.email;
   relation.value = info.relation;
 }
-
 
 function listenSubmitForm() {
   const form = document.querySelector(".form");
@@ -116,12 +120,14 @@ function listenSubmitForm() {
   document.querySelector("#cancel-btn").addEventListener("click", (event) => {
     event.preventDefault();
     setTimeout(() => {
-      DOMHandler.load(HomePage);
+      DOMHandler.load(ContactDetail);
       EditPage.state.createError = null;
     }, 800);
   });
 
   form.addEventListener("submit", async (event) => {
+    let id = STORE.currentContact;
+    console.log("asdasd", id, STORE);
     document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
     try {
       event.preventDefault();
@@ -133,10 +139,10 @@ function listenSubmitForm() {
         email: email.value,
         relation: relation.value,
       };
-      let id="794";
+
       const contact = await editContacts(id, credentials);
       let a = STORE.contacts;
-      let info = a.find(e => e.id == "794");
+      let info = a.find((e) => e.id == "794");
       const name2 = document.querySelector("#name");
       const number2 = document.querySelector("#number");
       const email2 = document.querySelector("#email");
@@ -145,7 +151,6 @@ function listenSubmitForm() {
       info.number = number2.value;
       info.email = email2.value;
       info.relation = relation2.value;
-      
 
       setTimeout(function () {
         loadingPage();
@@ -167,7 +172,7 @@ const EditPage = {
     return renderEdit();
   },
   addListeners() {
-     listenSubmitForm(), getInfoContact() 
+    listenSubmitForm(), getInfoContact();
   },
   state: {
     createError: null,

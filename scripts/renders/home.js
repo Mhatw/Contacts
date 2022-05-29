@@ -140,8 +140,14 @@ function openContact() {
       // if (!contactCardSelected) return;
       const id = contactCardSelected.dataset.id;
       console.log(id);
-      // STORE.favoriteContact(id);
-      // DOMHandler.reload();
+      STORE.currentContact = id;
+      console.log(STORE);
+      setTimeout(function () {
+        loadingPage();
+        setTimeout(() => {
+          DOMHandler.load(ContactDetail);
+        }, 500);
+      }, 500);
     });
   });
 }
