@@ -1,5 +1,8 @@
 import DOMHandler from "../dom-handler.js";
+import { login } from "../services/sessions-service.js";
 import { signup } from "../services/users-service.js";
+import STORE from "../store.js";
+import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 // render Signup
@@ -84,13 +87,22 @@ function listenSubmitForm() {
       };
 
       const user = await signup(credentials);
+      const userlogin = await login(credentials);
+      STORE.user = userlogin;
+      setTimeout(function () {
+        loadingPage();
+        setTimeout(async () => {
+          await STORE.fetchContacts();
+          DOMHandler.load(HomePage);
+        }, 500);
+      }, 500);
       // STORE.user = user;
       // console.log(credentials, user);
 
       // await STORE.fetchCategories();
-      setTimeout(function () {
-        DOMHandler.load(LoginPage);
-      }, 800);
+      // setTimeout(function () {
+      //   DOMHandler.load(LoginPage);
+      // }, 800);
     } catch (error) {
       SignupPage.state.SignupError = error.message;
       setTimeout(function () {
