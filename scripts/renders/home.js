@@ -11,9 +11,9 @@ import LoginPage from "./login.js";
 function renderContact(contact, type = "common") {
   return `
     <li>
-      <a data-id=${contact.id} id="contact-card">
+
         ${cardHtml(contact, type)}
-      </a>
+
     </li>`;
 }
 
@@ -34,6 +34,7 @@ function renderFavorites() {
 }
 
 function render() {
+  console.log("favorites", STORE);
   return `
   <!-- header -->
   <header class="container is-max-desktop">
@@ -84,36 +85,37 @@ function listenLogout() {
 }
 
 function listenToFavorite() {
-  const star = document.querySelector("#star-card");
-  star.addEventListener("click", (event) => {
-    // event.preventDefault();
-    // const favoriteLink = event.target.closest("[data-id]");
-    // if (!favoriteLink) return;
-    // const id = favoriteLink.dataset.id;
-    // await editContacts(id, { favorite: true }); // request api
-    // STORE.favoriteContact(id);
-    // DOMHandler.reload();
-  });
-}
-function listenToUnfavorite() {
-  try {
-    const ul = document.querySelector(".js-favorite-list");
+  let stars = document.querySelectorAll("#star-common");
 
-    ul.addEventListener("click", async (event) => {
-      event.preventDefault();
-
+  stars.forEach((star) => {
+    star.addEventListener("click", async (event) => {
       const favoriteLink = event.target.closest("[data-id]");
-      if (!favoriteLink) return;
-
+      // if (!favoriteLink) return;
       const id = favoriteLink.dataset.id;
-      await editContacts(id, { favorite: false }); // request api
-      STORE.unfavoriteContact(id);
+
+      if (STORE.favorites.find((e) => e.id == id)) return;
+      await editContacts(id, { favorite: true }); // request api
+      STORE.favoriteContact(id);
       DOMHandler.reload();
     });
-  } catch (error) {
-    console.log(error);
-  }
+  });
 }
+function listenToUnFavorite() {
+  let stars = document.querySelectorAll("#star-favorite");
+
+  stars.forEach((star) => {
+    star.addEventListener("click", async (event) => {
+      const favoriteLink = event.target.closest("[data-id]");
+      // // if (!favoriteLink) return;
+      const id = favoriteLink.dataset.id;
+
+      await editContacts(id, { favorite: false }); // request api
+      STORE.unFavoriteContact(id);
+      DOMHandler.reload();
+    });
+  });
+}
+
 function listenCreate() {
   const createBtn = document.querySelector("#create-btn");
   createBtn.addEventListener("click", (event) => {
@@ -142,7 +144,6 @@ function listenContact() {
       let currentContact = STORE.contacts.find((c) => c.id == id);
 
       STORE.currentContact = currentContact;
-      console.log(STORE.currentContact);
       DOMHandler.load(ContactDetail);
     } catch (error) {
       console.log(error);
@@ -154,10 +155,10 @@ export const HomePage = {
     return render();
   },
   addListeners() {
-    // listenToFavorite(), listenToUnfavorite(), listenCreate();
     listenCreate(),
-      listenContact(),
+      // listenContact(),
       calcMainAddBtn(),
+      listenToUnFavorite(),
       listenLogout(),
       listenToFavorite();
   },

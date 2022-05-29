@@ -8,7 +8,9 @@ const avatar = (current) =>
 
 export const cardHtml = (contact, type) => {
   return `
-      <div class="box container is-max-desktop contactCard">
+      <div data-id=${
+        contact.id
+      } class="box container is-max-desktop contactCard">
         <!-- img perfil -->
         <figure class="image is-48x48">
           <img

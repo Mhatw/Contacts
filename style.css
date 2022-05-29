@@ -137,3 +137,24 @@ main {
   position: fixed;
   transition: 0s;
 }
+
+#star-common {
+  color: rgb(29, 29, 29);
+}
+#star-favorite {
+  animation-name: example;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  color: rgb(255, 191, 0);
+}
+
+@keyframes example {
+  from {
+    color: rgb(255, 153, 0);
+    transform: scale(1);
+  }
+  to {
+    color: rgb(255, 191, 0);
+    transform: scale(1.2);
+  }
+}
