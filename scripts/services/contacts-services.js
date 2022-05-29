@@ -14,7 +14,7 @@ export async function deleteContacts(id) {
 
 export async function editContacts(
   id,
-  payload = {name, email, number, relations} ) {
+  payload = {name, number, email, relations} ) {
     const {token, ...contact} = await apiFetch("contacts/" + id, { 
       method: "PATCH",
       body: payload  
@@ -25,4 +25,3 @@ export async function editContacts(
 export async function showContact(id) {
   return apiFetch("contacts/" + id);
 }
-
