@@ -13,6 +13,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  white-space: normal;
+  overflow: scroll;
+  scrollbar-width: none;
 }
 .mailBox,
 .passwordBox {
@@ -38,4 +41,10 @@
   align-items: center;
   width: 100%;
   gap: 1rem;
+  margin-bottom: 5vh;
+}
+@media (orientation: landscape) {
+  .linksFooter {
+    margin-bottom: 10vh;
+  }
 }

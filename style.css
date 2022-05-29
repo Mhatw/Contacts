@@ -12,6 +12,10 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+body {
+  position: fixed;
+}
 body::-webkit-scrollbar {
   width: 0;
   height: 0;
@@ -23,7 +27,7 @@ main {
   position: relative;
   background-color: #f3f5fc;
   /* width: 100vw; */
-  height: 90vh;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -35,7 +39,11 @@ main {
   overflow: scroll;
   scrollbar-width: none;
 }
-
+@media (orientation: landscape) {
+  main {
+    height: 80%;
+  }
+}
 #create-btn {
   width: 3em;
   height: 3em;
