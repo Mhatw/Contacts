@@ -34,7 +34,7 @@ function renderFavorites() {
 }
 
 function render() {
-  console.log("favorites", STORE);
+  // console.log("favorites", STORE);
   return `
   <!-- header -->
   <header class="container is-max-desktop">

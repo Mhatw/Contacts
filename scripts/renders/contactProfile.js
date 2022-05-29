@@ -49,7 +49,7 @@ function renderProfile() {
         <a id="edit-btn" class="button is-link is-light">Edit</a>
       </div>
     </div>
-  `
+  `;
 }
 function listenLogout() {
   const $logoutBtn = document.querySelector("#logout-btn");
@@ -66,15 +66,14 @@ function listenLogout() {
 }
 function listenBack() {
   const backBtn = document.querySelector("#back-btn");
-  backBtn.addEventListener('click', (event) => { 
+  backBtn.addEventListener("click", (event) => {
     event.preventDefault();
     DOMHandler.load(HomePage);
-  })
+  });
 }
 function listenDelete() {
   const deleteBtn = document.querySelector("#delete-btn");
-  deleteBtn.addEventListener('click', async (event) => { 
-    
+  deleteBtn.addEventListener("click", async (event) => {
     try {
       event.preventDefault();
       await deleteContacts(STORE.idContact);
@@ -83,26 +82,26 @@ function listenDelete() {
     } catch (error) {
       console.log(error);
     }
-  })
+  });
 }
 function listenEdit() {
   const editBtn = document.querySelector("#edit-btn");
-  editBtn.addEventListener('click', (event) => {
+  editBtn.addEventListener("click", (event) => {
     try {
       event.preventDefault();
       DOMHandler.load(HomePage);
     } catch (error) {
       console.log(error);
     }
-  })
+  });
 }
 const ContactDetail = {
   toString() {
     return renderProfile();
   },
   addListeners() {
-    return listenBack(), listenDelete(), listenEdit(),listenLogout();
-  }
+    return listenBack(), listenDelete(), listenEdit(), listenLogout();
+  },
 };
 
 export default ContactDetail;
