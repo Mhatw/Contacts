@@ -5,7 +5,6 @@ import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
 import SignupPage from "./signup.js";
 
-// render login
 function renderLogin() {
   const { loginError } = LoginPage.state;
   return `<header class="container is-max-desktop">
@@ -64,8 +63,6 @@ function renderLogin() {
 
 const $ = (selector) => document.querySelector(selector);
 
-// listener
-
 function listenSubmitForm() {
   const $form = $(".form");
   $("#to-signup-btn").addEventListener("click", () => {
@@ -87,9 +84,6 @@ function listenSubmitForm() {
 
       const user = await login(credentials);
       STORE.user = user;
-
-      // nose porque pero no lo borren porque no se si es necesario
-      // console.log(user, STORE.user);
 
       setTimeout(function () {
         loadingPage();

@@ -8,7 +8,6 @@ import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
 let id = STORE.currentContact;
-console.log(id);
 const avatar = (current) =>
   ({
     Friends: "../../assets/friend.svg",

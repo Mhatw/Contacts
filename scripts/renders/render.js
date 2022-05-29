@@ -9,10 +9,6 @@ async function init() {
 
     if (!token) throw new Error();
 
-    // const user = await getUser()
-    // STORE.user = user
-
-    // await STORE.fetchCategories();
     DOMHandler.load(LoginPage);
   } catch (error) {
     sessionStorage.removeItem(tokenKey);

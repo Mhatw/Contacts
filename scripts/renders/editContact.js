@@ -8,9 +8,7 @@ import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
 function renderEdit() {
-  let id = STORE.currentContact;
   const { createError } = EditPage.state;
-  console.log(createError);
   return `
 
     <header class="container is-max-desktop">
@@ -91,7 +89,6 @@ function renderEdit() {
 
 function getInfoContact() {
   let id = STORE.currentContact;
-  console.log("asdasd33", id, STORE);
   let a = STORE.contacts;
   const info = a.find((e) => e.id == id);
   const name = document.querySelector("#name");
@@ -127,12 +124,10 @@ function listenSubmitForm() {
 
   form.addEventListener("submit", async (event) => {
     let id = STORE.currentContact;
-    console.log("asdasd", id, STORE);
-    document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
+    document.querySelector("#save-btn").classList.toggle("is-loading");
     try {
       event.preventDefault();
       const { name, number, email, relation } = event.target;
-      console.log(name.value, number.value, email.value, relation.value);
       const credentials = {
         name: name.value,
         number: number.value,

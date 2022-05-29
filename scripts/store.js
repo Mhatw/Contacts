@@ -8,19 +8,6 @@ async function fetchContacts() {
     .reverse();
 }
 
-// function currentContacts(){
-//   return this[this.currenTab]
-
-//   // if (STORE.currenTab === "income") {
-//   //   STORE.income
-//   // } else  {
-//   //   STORE.expense
-//   // }
-
-//   // return STORE[this.expense]
-//   // return this[this.currenTab]
-// }
-
 function deleteContact(id) {
   this.contacts = this.contacts.filter((contact) => contact.id != id);
   this.favorites = this.favorites.filter((contact) => contact.id != id);
@@ -36,15 +23,6 @@ function unFavoriteContact(id) {
   );
 }
 
-// const STORE = {
-//   user: null,
-//   contacts: [],
-//   favorites: [],
-//   currenTab: "contacts",
-//   fetchContacts,
-//   currentContacts,
-//   deleteContact
-// };
 let STORE = {
   user: null,
   contacts: [],
@@ -57,17 +35,3 @@ let STORE = {
 };
 
 export default STORE;
-
-/*
-// Para hacer el render de favorites
-if (STORE.favorites.length > 0 ){
-  div.prepend(
-  `
-    <h2></h2>
-    
-  `
-  )
-}
-
-
-*/

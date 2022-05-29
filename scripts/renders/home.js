@@ -34,7 +34,6 @@ function renderFavorites() {
 }
 
 function render() {
-  // console.log("favorites", STORE);
   return `
   <!-- header -->
   <header class="container is-max-desktop">
@@ -65,7 +64,6 @@ function calcMainAddBtn() {
   createBtn.style.transform = `translate(${
     width / 2 - createBtn.offsetWidth
   }px,${height - createBtn.offsetHeight * 2.5}px)`;
-  // console.log(createBtn.style.transform);
 }
 
 window.addEventListener("resize", calcMainAddBtn);
@@ -90,7 +88,6 @@ function listenToFavorite() {
   stars.forEach((star) => {
     star.addEventListener("click", async (event) => {
       const favoriteLink = event.target.closest("[data-id]");
-      // if (!favoriteLink) return;
       const id = favoriteLink.dataset.id;
 
       if (STORE.favorites.find((e) => e.id == id)) return;
@@ -106,7 +103,6 @@ function listenToUnFavorite() {
   stars.forEach((star) => {
     star.addEventListener("click", async (event) => {
       const favoriteLink = event.target.closest("[data-id]");
-      // // if (!favoriteLink) return;
       const id = favoriteLink.dataset.id;
 
       await editContacts(id, { favorite: false }); // request api
@@ -123,7 +119,6 @@ function listenCreate() {
     setTimeout(function () {
       loadingPage();
       setTimeout(() => {
-        // await STORE.fetchContacts();
         DOMHandler.load(CreatePage);
       }, 500);
     }, 500);
@@ -149,34 +144,12 @@ function openContact() {
   });
 }
 
-// function listenContact() {
-//   // const contactCard = document.querySelector("#contact-card");
-//   // contactCard.addEventListener('click', (event) => {
-//   const ul = document.querySelector(".js-favorite-list");
-
-//   ul.addEventListener("click", async (event) => {
-//     event.preventDefault();
-//     try {
-//       const current = event.target.closest("[data-id]");
-//       if (!current) return;
-
-//       const id = current.dataset.id;
-//       let currentContact = STORE.contacts.find((c) => c.id == id);
-
-//       STORE.currentContact = currentContact;
-//       DOMHandler.load(ContactDetail);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   });
-// }
 export const HomePage = {
   toString() {
     return render();
   },
   addListeners() {
     listenCreate(),
-      // listenContact(),
       calcMainAddBtn(),
       listenToUnFavorite(),
       listenLogout(),

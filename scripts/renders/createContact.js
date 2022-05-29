@@ -108,7 +108,7 @@ function listenSubmitForm() {
   });
 
   form.addEventListener("submit", async (event) => {
-    document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
+    document.querySelector("#save-btn").classList.toggle("is-loading");
     try {
       event.preventDefault();
       const { name, number, email, relation } = event.target;
