@@ -7,58 +7,59 @@ import SignupPage from "./signup.js";
 
 function renderLogin() {
   const { loginError } = LoginPage.state;
-  return `<header class="container is-max-desktop">
-<a class="navbar-item" href="../../index.html">
-  <h1>📕 Login</h1>
-</a>
-<!-- <button class="button is-danger is-light is-small">logout</button> -->
-</header>
-<main class="container is-max-desktop">
-<!-- form -->
-<form action="" class="form">
-  <div class="formBody">
-    <div class="mailBox control">
-      <input
+  return `
+  <header class="container is-max-desktop">
+  <a class="navbar-item" href="../../index.html">
+    <h1>📕 Login</h1>
+  </a>
+  <!-- <button class="button is-danger is-light is-small">logout</button> -->
+  </header>
+  <main class="container is-max-desktop">
+  <!-- form -->
+  <form action="" class="form">
+    <div class="formBody">
+      <div class="mailBox control">
+        <input
+          class="input ${loginError ? "is-danger" : ""}"
+          type="email"
+          id="email"
+          name="email"
+          placeholder="email"
+        />
+        </div>
+        
+        
+        <div class="passwordBox control">
+        <input
         class="input ${loginError ? "is-danger" : ""}"
-        type="email"
-        id="email"
-        name="email"
-        placeholder="email"
-      />
-      </div>
-      
-      
-      <div class="passwordBox control">
-      <input
-      class="input ${loginError ? "is-danger" : ""}"
-      type="password"
-      name="password"
-      placeholder="password"
-      minlength="6"
-      required
-      />
-      </div>
-      ${
-        loginError
-          ? `<p class="tag is-danger is-light"> 😨 ${loginError}</p>`
-          : ""
-      }
-  </div>
+        type="password"
+        name="password"
+        placeholder="password"
+        minlength="6"
+        required
+        />
+        </div>
+        ${
+          loginError
+            ? `<p class="tag is-danger is-light"> 😨 ${loginError}</p>`
+            : ""
+        }
+    </div>
 
-  <div class="linksFooter field">
-    <div class="control">
-      <a id="to-signup-btn" class="button is-link is-light">Signup</a>
+    <div class="linksFooter field">
+      <div class="control">
+        <a id="to-signup-btn" class="button is-link is-light">Signup</a>
+      </div>
+      <div class="control">
+        <button
+          type="submit"
+          class="button is-link"
+          id="submit-btn"
+        />Login</button>
+      </div>
     </div>
-    <div class="control">
-      <button
-        type="submit"
-        class="button is-link"
-        id="submit-btn"
-      />Login</button>
-    </div>
-  </div>
-</form>
-</main>`;
+  </form>
+  </main>`;
 }
 
 const $ = (selector) => document.querySelector(selector);
