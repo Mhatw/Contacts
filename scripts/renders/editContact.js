@@ -1,24 +1,15 @@
+import { listenLogout, renderHeader } from "../components/header.js";
 import DOMHandler from "../dom-handler.js";
-import { createContacts, editContacts } from "../services/contacts-services.js";
-import { logout } from "../services/sessions-service.js";
+import { editContacts } from "../services/contacts-services.js";
 import STORE from "../store.js";
 import ContactDetail from "./contactProfile.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
-import LoginPage from "./login.js";
 
 function renderEdit() {
   const { createError } = EditPage.state;
   return `
-
-    <header class="container is-max-desktop">
-      <div class="titleLog">
-        <h1>📕 Edit Contact </h1>
-      </div>
-      <div class ="linkOut">
-        <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
-      </div>
-    </header>
+    ${renderHeader()}    
     <main class="container is-max-desktop">
     <form action="" class="form">
       <div class="formBody">
@@ -89,8 +80,8 @@ function renderEdit() {
 
 function getInfoContact() {
   let id = STORE.currentContact;
-  let a = STORE.contacts;
-  const info = a.find((e) => e.id == id);
+  let contacts = STORE.contacts;
+  const info = contacts.find((c) => c.id == id);
   const name = document.querySelector("#name");
   const number = document.querySelector("#number");
   const email = document.querySelector("#email");
@@ -103,17 +94,6 @@ function getInfoContact() {
 
 function listenSubmitForm() {
   const form = document.querySelector(".form");
-  const $logoutBtn = document.querySelector("#logout-btn");
-  $logoutBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await logout();
-    setTimeout(function () {
-      loadingPage();
-      setTimeout(() => {
-        DOMHandler.load(LoginPage);
-      }, 500);
-    }, 500);
-  });
   document.querySelector("#cancel-btn").addEventListener("click", (event) => {
     event.preventDefault();
     setTimeout(() => {
@@ -135,7 +115,7 @@ function listenSubmitForm() {
         relation: relation.value,
       };
 
-      const contact = await editContacts(id, credentials);
+      await editContacts(id, credentials);
       let a = STORE.contacts;
       let info = a.find((e) => e.id == id);
       const name2 = document.querySelector("#name");
@@ -167,7 +147,7 @@ const EditPage = {
     return renderEdit();
   },
   addListeners() {
-    listenSubmitForm(), getInfoContact();
+    listenSubmitForm(), getInfoContact(), listenLogout();
   },
   state: {
     createError: null,
