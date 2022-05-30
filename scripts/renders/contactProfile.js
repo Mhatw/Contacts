@@ -1,11 +1,10 @@
+import { listenLogout, renderHeader } from "../components/header.js";
 import DOMHandler from "../dom-handler.js";
 import { deleteContacts } from "../services/contacts-services.js";
-import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import EditPage from "./editContact.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
-import LoginPage from "./login.js";
 
 let id = STORE.currentContact;
 const avatar = (current) =>
@@ -20,13 +19,7 @@ function renderProfile() {
   id = STORE.currentContact;
   let contact = STORE.contacts.find((c) => c.id == id);
   return `
-  <!-- header -->
-  <header class="container is-max-desktop">
-  <a class="navbar-item" href="../../index.html">
-  <h1>📕 Contact Detail</h1>
-  </a>
-  <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
-  </header>
+  ${renderHeader()}
   <main class="container is-max-desktop">
   <div class="profile">
   <div class="profileBody">
@@ -61,19 +54,7 @@ function renderProfile() {
     </div>
   </main>`;
 }
-function listenLogout() {
-  const $logoutBtn = document.querySelector("#logout-btn");
-  $logoutBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await logout();
-    setTimeout(function () {
-      loadingPage();
-      setTimeout(() => {
-        DOMHandler.load(LoginPage);
-      }, 500);
-    }, 500);
-  });
-}
+
 function listenBack() {
   const backBtn = document.querySelector("#back-btn");
   backBtn.addEventListener("click", (event) => {
