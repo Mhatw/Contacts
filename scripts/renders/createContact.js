@@ -4,75 +4,51 @@ import { createContacts } from "../services/contacts-services.js";
 import STORE from "../store.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
+import { renderInput } from "/scripts/components/input.js";
 
 function renderCreate() {
   const { createError } = CreatePage.state;
   return `
     ${renderHeader()}   
     <main>
-    <form action="" class="form">
-      <div class="formBody">
+      <form action="" class="form">
+        <div class="formBody">
+          
+          ${renderInput("name", "name", "Name", createError)}
+          ${renderInput("tel", "number", "Number", createError, "mailBox", `maxlength="9"`)}
+          ${renderInput("email", "email", "Email", createError)}
+
+          <div class="passwordBox select ">
+            <select name="relation" class="${
+              createError ? "is-danger" : ""
+            }" id="relation" required>
+              <option value="" disabled selected hidden>Relation</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Work">Work</option>
+              <option value="Acquaintance">Acquaintance</option>
+            </select>
+          </div>
+          ${
+            createError
+              ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
+              : ""
+          }
+        </div>
       
-      <div class="mailBox control">
-      <input
-        class="input ${createError ? "is-danger" : ""}"
-        type="name"
-        id="name"
-        name="name"
-        placeholder="Name"
-      />
-      </div>
-      <div class="mailBox control">
-        <input
-          class="input ${createError ? "is-danger" : ""}"
-          maxlength="9"
-          type="tel"
-          id="number"
-          name="number"
-          placeholder="Number"
-        />
+        <div class="linksFooter field">
+          <div class="control">
+            <a id="cancel-btn" class="button is-link is-light">Cancel</a>
+          </div>
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              id="save-btn"
+            />Save</button>
+          </div>
         </div>
-        <div class="mailBox control">
-        <input
-          class="input ${createError ? "is-danger" : ""} "
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email"
-        />
-        </div>
-        
-        <div class="passwordBox select ">
-          <select name="relation" class="${
-            createError ? "is-danger" : ""
-          }" id="relation" required>
-            <option value="" disabled selected hidden>Relation</option>
-            <option value="Family">Family</option>
-            <option value="Friends">Friends</option>
-            <option value="Work">Work</option>
-            <option value="Acquaintance">Acquaintance</option>
-          </select>
-        </div>
-        ${
-          createError
-            ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
-            : ""
-        }
-    </div>
-  
-    <div class="linksFooter field">
-      <div class="control">
-        <a id="cancel-btn" class="button is-link is-light">Cancel</a>
-      </div>
-      <div class="control">
-        <button
-          type="submit"
-          class="button is-link"
-          id="save-btn"
-        />Save</button>
-      </div>
-    </div>
-  </form>
+      </form>
     </main>
   `;
 }
