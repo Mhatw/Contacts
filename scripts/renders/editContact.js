@@ -1,4 +1,5 @@
 import { listenLogout, renderHeader } from "../components/header.js";
+import { renderInput } from "../components/input.js";
 import DOMHandler from "../dom-handler.js";
 import { editContacts } from "../services/contacts-services.js";
 import STORE from "../store.js";
@@ -11,69 +12,44 @@ function renderEdit() {
   return `
     ${renderHeader()}    
     <main class="container is-max-desktop">
-    <form action="" class="form">
-      <div class="formBody">
-      
-      <div class="mailBox control">
-      <input
-        class="input is-info ${createError ? "is-danger" : ""}"
-        type="name"
-        id="name"
-        name="name"
-        placeholder="Name"
-      />
-      </div>
-      <div class="mailBox control">
-        <input
-          class="input is-info ${createError ? "is-danger" : ""}"
-          maxlength="9"
-          type="tel"
-          id="number"
-          name="number"
-          placeholder="Number"
-        />
-        </div>
-        <div class="mailBox control">
-        <input
-          class="input is-info ${createError ? "is-danger" : ""} "
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email"
-        />
-        </div>
+      <form action="" class="form">
+        <div class="formBody">
         
-        <div class="passwordBox select is-info">
-          <select name="relation" class="${
-            createError ? "is-danger" : ""
-          }" id="relation" required>
-            <option value="" disabled selected hidden>Relation</option>
-            <option value="Family">Family</option>
-            <option value="Friends">Friends</option>
-            <option value="Work">Work</option>
-            <option value="Acquaintance">Acquaintance</option>
-          </select>
+        ${renderInput("name", "name", "Name", createError)}
+        ${renderInput("tel", "number", "Number", createError, "mailBox", `maxlength="9"`)}
+        ${renderInput("email", "email", "Email", createError)}
+          
+          <div class="passwordBox select is-info">
+            <select name="relation" class="${
+              createError ? "is-danger" : ""
+            }" id="relation" required>
+              <option value="" disabled selected hidden>Relation</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Work">Work</option>
+              <option value="Acquaintance">Acquaintance</option>
+            </select>
+          </div>
+          ${
+            createError
+              ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
+              : ""
+          }
         </div>
-        ${
-          createError
-            ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
-            : ""
-        }
-    </div>
   
-    <div class="linksFooter field">
-      <div class="control">
-        <a id="cancel-btn" class="button is-link is-light">Cancel</a>
-      </div>
-      <div class="control">
-        <button
-          type="submit"
-          class="button is-link"
-          id="save-btn"
-        />Save</button>
-      </div>
-    </div>
-  </form>
+        <div class="linksFooter field">
+          <div class="control">
+            <a id="cancel-btn" class="button is-link is-light">Cancel</a>
+          </div>
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              id="save-btn"
+            />Save</button>
+          </div>
+        </div>
+      </form>
     </main>
   `;
 }
