@@ -1,3 +1,4 @@
+import { renderInput } from "../components/input.js";
 import DOMHandler from "../dom-handler.js";
 import { login } from "../services/sessions-service.js";
 import STORE from "../store.js";
@@ -12,38 +13,18 @@ function renderLogin() {
   <a class="navbar-item" href="../../index.html">
     <h1>📕 Login</h1>
   </a>
-  <!-- <button class="button is-danger is-light is-small">logout</button> -->
   </header>
   <main class="container is-max-desktop">
   <!-- form -->
   <form action="" class="form">
     <div class="formBody">
-      <div class="mailBox control">
-        <input
-          class="input ${loginError ? "is-danger" : ""}"
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email"
-        />
-        </div>
-        
-        
-        <div class="passwordBox control">
-        <input
-        class="input ${loginError ? "is-danger" : ""}"
-        type="password"
-        name="password"
-        placeholder="password"
-        minlength="6"
-        required
-        />
-        </div>
-        ${
-          loginError
-            ? `<p class="tag is-danger is-light"> 😨 ${loginError}</p>`
-            : ""
-        }
+      ${renderInput("email", "email", "email", loginError)}        
+      ${renderInput("password", "password", "password", loginError, "passwordBox", `minlength="6" required`)}
+      ${
+        loginError
+          ? `<p class="tag is-danger is-light"> 😨 ${loginError}</p>`
+          : ""
+      }
     </div>
 
     <div class="linksFooter field">
