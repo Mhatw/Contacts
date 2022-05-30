@@ -1,19 +1,16 @@
+import { listenLogout, renderHeader } from "../components/header.js";
 import DOMHandler from "../dom-handler.js";
 import { editContacts } from "../services/contacts-services.js";
-import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import { cardHtml } from "./card.js";
 import ContactDetail from "./contactProfile.js";
 import CreatePage from "./createContact.js";
 import loadingPage from "./loading.js";
-import LoginPage from "./login.js";
 
 function renderContact(contact, type = "common") {
   return `
     <li>
-
         ${cardHtml(contact, type)}
-
     </li>`;
 }
 
@@ -35,13 +32,7 @@ function renderFavorites() {
 
 function render() {
   return `
-  <!-- header -->
-  <header class="container is-max-desktop">
-  <a class="navbar-item" href="../../index.html">
-  <h1>📕 Contactable</h1>
-  </a>
-  <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
-  </header>
+  ${renderHeader()}
   <main class="container is-max-desktop">
   <div class="container is-max-desktop cardDiv">
         ${renderFavorites()}
@@ -67,20 +58,6 @@ function calcMainAddBtn() {
 }
 
 window.addEventListener("resize", calcMainAddBtn);
-
-function listenLogout() {
-  const $logoutBtn = document.querySelector("#logout-btn");
-  $logoutBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await logout();
-    setTimeout(function () {
-      loadingPage();
-      setTimeout(() => {
-        DOMHandler.load(LoginPage);
-      }, 500);
-    }, 500);
-  });
-}
 
 function listenToFavorite() {
   let stars = document.querySelectorAll("#star-common");
@@ -131,7 +108,6 @@ function openContact() {
   contacts.forEach((contact) => {
     contact.addEventListener("click", async (event) => {
       const contactCardSelected = event.target.closest("[data-id]");
-      // if (!contactCardSelected) return;
       const id = contactCardSelected.dataset.id;
       STORE.currentContact = id;
       setTimeout(function () {
@@ -150,10 +126,10 @@ export const HomePage = {
   },
   addListeners() {
     listenCreate(),
-      calcMainAddBtn(),
-      listenToUnFavorite(),
-      listenLogout(),
-      listenToFavorite(),
-      openContact();
+    calcMainAddBtn(),
+    listenToUnFavorite(),
+    listenLogout(),
+    listenToFavorite(),
+    openContact();
   },
 };
