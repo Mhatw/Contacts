@@ -1,3 +1,4 @@
+import { renderInput } from "../components/input.js";
 import DOMHandler from "../dom-handler.js";
 import { login } from "../services/sessions-service.js";
 import { signup } from "../services/users-service.js";
@@ -8,42 +9,23 @@ import LoginPage from "./login.js";
 
 function renderSignup() {
   const { SignupError } = SignupPage.state;
-  return `<header class="container is-max-desktop">
+  return `
+  <header class="container is-max-desktop">
 <a class="navbar-item" href="../../index.html">
   <h1>📕 Sign Up</h1>
 </a>
-<!-- <button class="button is-danger is-light is-small">logout</button> -->
 </header>
 <main class="container is-max-desktop">
 <!-- form -->
 <form action="" class="form">
   <div class="formBody">
-    <div class="mailBox control">
-      <input
-        class="input ${SignupError ? "is-danger" : ""}"
-        type="email"
-        id="email"
-        name="email"
-        placeholder="email"
-      />
-      </div>
-      
-      
-      <div class="passwordBox control">
-      <input
-      class="input ${SignupError ? "is-danger" : ""}"
-      type="password"
-      name="password"
-      placeholder="password"
-      minlength="8"
-      required
-      />
-      </div>
-      ${
-        SignupError
-          ? `<p class="tag is-danger is-light"> 😨 ${SignupError}</p>`
-          : ""
-      }
+    ${renderInput("email", "email", "email", SignupError)}       
+    ${renderInput("password", "password", "password", SignupError, "passwordBox", `minlength="6" required`)}
+    ${
+      SignupError
+        ? `<p class="tag is-danger is-light"> 😨 ${SignupError}</p>`
+        : ""
+    }
   </div>
 
   <div class="linksFooter field">
