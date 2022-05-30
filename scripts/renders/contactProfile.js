@@ -8,6 +8,7 @@ import loadingPage from "./loading.js";
 import LoginPage from "./login.js";
 
 let id = STORE.currentContact;
+console.log(id);
 const avatar = (current) =>
   ({
     Friends: "../../assets/friend.svg",
@@ -19,7 +20,6 @@ const avatar = (current) =>
 function renderProfile() {
   id = STORE.currentContact;
   let contact = STORE.contacts.find((c) => c.id == id);
-  console.log(id, "this", contact);
   return `
   <!-- header -->
   <header class="container is-max-desktop">
@@ -92,8 +92,8 @@ function listenDelete() {
   deleteBtn.addEventListener("click", async (event) => {
     try {
       event.preventDefault();
-      await deleteContacts(STORE.idContact);
-      STORE.deleteContact(STORE.idContact);
+      await deleteContacts(STORE.currentContact);
+      STORE.deleteContact(STORE.currentContact);
       DOMHandler.load(HomePage);
     } catch (error) {
       console.log(error);
