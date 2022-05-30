@@ -1,23 +1,14 @@
+import { listenLogout, renderHeader } from "../components/header.js";
 import DOMHandler from "../dom-handler.js";
 import { createContacts } from "../services/contacts-services.js";
-import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
-import LoginPage from "./login.js";
 
 function renderCreate() {
   const { createError } = CreatePage.state;
   return `
-  
-    <header>
-      <div class="titleLog">
-        <h1>📕 Create new contact</h1>
-      </div>
-      <div class ="linkOut">
-        <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
-      </div>
-    </header>
+    ${renderHeader()}   
     <main>
     <form action="" class="form">
       <div class="formBody">
@@ -86,19 +77,7 @@ function renderCreate() {
   `;
 }
 
-function listenSubmitForm() {
-  const form = document.querySelector(".form");
-  const $logoutBtn = document.querySelector("#logout-btn");
-  $logoutBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await logout();
-    setTimeout(function () {
-      loadingPage();
-      setTimeout(() => {
-        DOMHandler.load(LoginPage);
-      }, 500);
-    }, 500);
-  });
+function listenCancel() {
   document.querySelector("#cancel-btn").addEventListener("click", (event) => {
     event.preventDefault();
     setTimeout(() => {
@@ -106,6 +85,10 @@ function listenSubmitForm() {
       CreatePage.state.createError = null;
     }, 800);
   });
+}
+
+function listenSubmitForm() {
+  const form = document.querySelector(".form");
 
   form.addEventListener("submit", async (event) => {
     document.querySelector("#save-btn").classList.toggle("is-loading");
@@ -142,7 +125,7 @@ const CreatePage = {
     return renderCreate();
   },
   addListeners() {
-    return listenSubmitForm();
+    return listenSubmitForm(), listenLogout(), listenCancel();
   },
   state: {
     createError: null,
