@@ -1,99 +1,63 @@
+import { listenLogout, renderHeader } from "../components/header.js";
+import { renderInput } from "../components/input.js";
 import DOMHandler from "../dom-handler.js";
-import { createContacts, editContacts } from "../services/contacts-services.js";
-import { logout } from "../services/sessions-service.js";
+import { editContacts } from "../services/contacts-services.js";
 import STORE from "../store.js";
 import ContactDetail from "./contactProfile.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
-import LoginPage from "./login.js";
 
 function renderEdit() {
-  let id = STORE.currentContact;
   const { createError } = EditPage.state;
-  console.log(createError);
   return `
-
-    <header class="container is-max-desktop">
-      <div class="titleLog">
-        <h1>📕 Edit Contact </h1>
-      </div>
-      <div class ="linkOut">
-        <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
-      </div>
-    </header>
+    ${renderHeader()}    
     <main class="container is-max-desktop">
-    <form action="" class="form">
-      <div class="formBody">
-      
-      <div class="mailBox control">
-      <input
-        class="input is-info ${createError ? "is-danger" : ""}"
-        type="name"
-        id="name"
-        name="name"
-        placeholder="Name"
-      />
-      </div>
-      <div class="mailBox control">
-        <input
-          class="input is-info ${createError ? "is-danger" : ""}"
-          maxlength="9"
-          type="tel"
-          id="number"
-          name="number"
-          placeholder="Number"
-        />
-        </div>
-        <div class="mailBox control">
-        <input
-          class="input is-info ${createError ? "is-danger" : ""} "
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email"
-        />
-        </div>
+      <form action="" class="form">
+        <div class="formBody">
         
-        <div class="passwordBox select is-info">
-          <select name="relation" class="${
-            createError ? "is-danger" : ""
-          }" id="relation" required>
-            <option value="" disabled selected hidden>Relation</option>
-            <option value="Family">Family</option>
-            <option value="Friends">Friends</option>
-            <option value="Work">Work</option>
-            <option value="Acquaintance">Acquaintance</option>
-          </select>
+        ${renderInput("name", "name", "Name", createError)}
+        ${renderInput("tel", "number", "Number", createError, "mailBox", `maxlength="9"`)}
+        ${renderInput("email", "email", "Email", createError)}
+          
+          <div class="passwordBox select is-info">
+            <select name="relation" class="${
+              createError ? "is-danger" : ""
+            }" id="relation" required>
+              <option value="" disabled selected hidden>Relation</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Work">Work</option>
+              <option value="Acquaintance">Acquaintance</option>
+            </select>
+          </div>
+          ${
+            createError
+              ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
+              : ""
+          }
         </div>
-        ${
-          createError
-            ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
-            : ""
-        }
-    </div>
   
-    <div class="linksFooter field">
-      <div class="control">
-        <a id="cancel-btn" class="button is-link is-light">Cancel</a>
-      </div>
-      <div class="control">
-        <button
-          type="submit"
-          class="button is-link"
-          id="save-btn"
-        />Save</button>
-      </div>
-    </div>
-  </form>
+        <div class="linksFooter field">
+          <div class="control">
+            <a id="cancel-btn" class="button is-link is-light">Cancel</a>
+          </div>
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              id="save-btn"
+            />Save</button>
+          </div>
+        </div>
+      </form>
     </main>
   `;
 }
 
 function getInfoContact() {
   let id = STORE.currentContact;
-  console.log("asdasd33", id, STORE);
-  let a = STORE.contacts;
-  const info = a.find((e) => e.id == id);
+  let contacts = STORE.contacts;
+  const info = contacts.find((c) => c.id == id);
   const name = document.querySelector("#name");
   const number = document.querySelector("#number");
   const email = document.querySelector("#email");
@@ -106,17 +70,6 @@ function getInfoContact() {
 
 function listenSubmitForm() {
   const form = document.querySelector(".form");
-  const $logoutBtn = document.querySelector("#logout-btn");
-  $logoutBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await logout();
-    setTimeout(function () {
-      loadingPage();
-      setTimeout(() => {
-        DOMHandler.load(LoginPage);
-      }, 500);
-    }, 500);
-  });
   document.querySelector("#cancel-btn").addEventListener("click", (event) => {
     event.preventDefault();
     setTimeout(() => {
@@ -127,12 +80,10 @@ function listenSubmitForm() {
 
   form.addEventListener("submit", async (event) => {
     let id = STORE.currentContact;
-    console.log("asdasd", id, STORE);
-    document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
+    document.querySelector("#save-btn").classList.toggle("is-loading");
     try {
       event.preventDefault();
       const { name, number, email, relation } = event.target;
-      console.log(name.value, number.value, email.value, relation.value);
       const credentials = {
         name: name.value,
         number: number.value,
@@ -140,7 +91,7 @@ function listenSubmitForm() {
         relation: relation.value,
       };
 
-      const contact = await editContacts(id, credentials);
+      await editContacts(id, credentials);
       let a = STORE.contacts;
       let info = a.find((e) => e.id == id);
       const name2 = document.querySelector("#name");
@@ -172,7 +123,7 @@ const EditPage = {
     return renderEdit();
   },
   addListeners() {
-    listenSubmitForm(), getInfoContact();
+    listenSubmitForm(), getInfoContact(), listenLogout();
   },
   state: {
     createError: null,

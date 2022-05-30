@@ -2,7 +2,6 @@ import { BASE_URI, tokenKey } from "../config.js";
 
 export default async function apiFetch( endpoint , { method, headers, body } = {} ){
   const token = sessionStorage.getItem(tokenKey);
-  // (endpoint = "login", {body: {email, password}})
   if(token) {
     headers = {
       Authorization: `Token token=${token}`,

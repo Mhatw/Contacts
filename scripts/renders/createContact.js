@@ -1,104 +1,59 @@
+import { listenLogout, renderHeader } from "../components/header.js";
 import DOMHandler from "../dom-handler.js";
 import { createContacts } from "../services/contacts-services.js";
-import { logout } from "../services/sessions-service.js";
 import STORE from "../store.js";
 import { HomePage } from "./home.js";
 import loadingPage from "./loading.js";
-import LoginPage from "./login.js";
+import { renderInput } from "/scripts/components/input.js";
 
 function renderCreate() {
   const { createError } = CreatePage.state;
   return `
-  
-    <header>
-      <div class="titleLog">
-        <h1>📕 Create new contact</h1>
-      </div>
-      <div class ="linkOut">
-        <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
-      </div>
-    </header>
+    ${renderHeader()}   
     <main>
-    <form action="" class="form">
-      <div class="formBody">
+      <form action="" class="form">
+        <div class="formBody">
+          
+          ${renderInput("name", "name", "Name", createError)}
+          ${renderInput("tel", "number", "Number", createError, "mailBox", `maxlength="9"`)}
+          ${renderInput("email", "email", "Email", createError)}
+
+          <div class="passwordBox select ">
+            <select name="relation" class="${
+              createError ? "is-danger" : ""
+            }" id="relation" required>
+              <option value="" disabled selected hidden>Relation</option>
+              <option value="Family">Family</option>
+              <option value="Friends">Friends</option>
+              <option value="Work">Work</option>
+              <option value="Acquaintance">Acquaintance</option>
+            </select>
+          </div>
+          ${
+            createError
+              ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
+              : ""
+          }
+        </div>
       
-      <div class="mailBox control">
-      <input
-        class="input ${createError ? "is-danger" : ""}"
-        type="name"
-        id="name"
-        name="name"
-        placeholder="Name"
-      />
-      </div>
-      <div class="mailBox control">
-        <input
-          class="input ${createError ? "is-danger" : ""}"
-          maxlength="9"
-          type="tel"
-          id="number"
-          name="number"
-          placeholder="Number"
-        />
+        <div class="linksFooter field">
+          <div class="control">
+            <a id="cancel-btn" class="button is-link is-light">Cancel</a>
+          </div>
+          <div class="control">
+            <button
+              type="submit"
+              class="button is-link"
+              id="save-btn"
+            />Save</button>
+          </div>
         </div>
-        <div class="mailBox control">
-        <input
-          class="input ${createError ? "is-danger" : ""} "
-          type="email"
-          id="email"
-          name="email"
-          placeholder="email"
-        />
-        </div>
-        
-        <div class="passwordBox select ">
-          <select name="relation" class="${
-            createError ? "is-danger" : ""
-          }" id="relation" required>
-            <option value="" disabled selected hidden>Relation</option>
-            <option value="Family">Family</option>
-            <option value="Friends">Friends</option>
-            <option value="Work">Work</option>
-            <option value="Acquaintance">Acquaintance</option>
-          </select>
-        </div>
-        ${
-          createError
-            ? `<p class="tag is-danger is-light"> 😨 ${createError}</p>`
-            : ""
-        }
-    </div>
-  
-    <div class="linksFooter field">
-      <div class="control">
-        <a id="cancel-btn" class="button is-link is-light">Cancel</a>
-      </div>
-      <div class="control">
-        <button
-          type="submit"
-          class="button is-link"
-          id="save-btn"
-        />Save</button>
-      </div>
-    </div>
-  </form>
+      </form>
     </main>
   `;
 }
 
-function listenSubmitForm() {
-  const form = document.querySelector(".form");
-  const $logoutBtn = document.querySelector("#logout-btn");
-  $logoutBtn.addEventListener("click", async (event) => {
-    event.preventDefault();
-    await logout();
-    setTimeout(function () {
-      loadingPage();
-      setTimeout(() => {
-        DOMHandler.load(LoginPage);
-      }, 500);
-    }, 500);
-  });
+function listenCancel() {
   document.querySelector("#cancel-btn").addEventListener("click", (event) => {
     event.preventDefault();
     setTimeout(() => {
@@ -106,9 +61,13 @@ function listenSubmitForm() {
       CreatePage.state.createError = null;
     }, 800);
   });
+}
+
+function listenSubmitForm() {
+  const form = document.querySelector(".form");
 
   form.addEventListener("submit", async (event) => {
-    document.querySelector("#save-btn").classList.toggle("is-loading"); // class = "is-loading"
+    document.querySelector("#save-btn").classList.toggle("is-loading");
     try {
       event.preventDefault();
       const { name, number, email, relation } = event.target;
@@ -142,7 +101,7 @@ const CreatePage = {
     return renderCreate();
   },
   addListeners() {
-    return listenSubmitForm();
+    return listenSubmitForm(), listenLogout(), listenCancel();
   },
   state: {
     createError: null,
