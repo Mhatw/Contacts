@@ -3,32 +3,17 @@
 Keep track of contact emails and phone numbers in your local memory (your brain)
 is something from the past. `Contactable` make your life easier keeping track of
 all that information for you.
-
-<div style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
+[try online](https://contacts-ruby.vercel.app/)
+<p align="center">
 <img src="./capture.png"
      alt="Markdown Monster icon"
      style="margin-right: 10px;width:200px" />
+     </p>
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skills.thijs.gg/icons?i=js,html,css,vscode" />
   </a>
 </p>
-<a href="https://contacts-ruby.vercel.app/" target="_blank"
-style="font: bold 11px Arial;
-display:flex;
-align-items:center;
-justify-content:center;
-  width:60%;
-  margin-bottom:2rem;
-  height:2rem;
-  text-decoration: none;
-  text-align: center;
-  font-size:1rem;
-  border-radius: 0.4rem;
-  background-color: #46ab5e;
-  color: #fff;
-  padding: 2px 6px 2px 6px;">Try online</a>
-</div>
 
 ## Resources
 
