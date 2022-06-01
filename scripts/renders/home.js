@@ -34,7 +34,9 @@ function render() {
   return `
   ${renderHeader()}
   <main class="container is-max-desktop">
+  
   <div class="container is-max-desktop cardDiv">
+  <h2 class="titleSection" >Home</h2>
         ${renderFavorites()}
         <h3 class="tag is-info is-light">ALL CONTACTS (${
           STORE.contacts.length
@@ -67,7 +69,9 @@ function listenToFavorite() {
       const favoriteLink = event.target.closest("[data-id]");
       const id = favoriteLink.dataset.id;
 
-      if (STORE.favorites.find((e) => e.id == id)) return;
+      if (STORE.favorites.find((e) => e.id == id)) {
+        return alert("Already in favorites");
+      }
       await editContacts(id, { favorite: true }); // request api
       STORE.favoriteContact(id);
       DOMHandler.reload();
@@ -126,10 +130,10 @@ export const HomePage = {
   },
   addListeners() {
     listenCreate(),
-    calcMainAddBtn(),
-    listenToUnFavorite(),
-    listenLogout(),
-    listenToFavorite(),
-    openContact();
+      calcMainAddBtn(),
+      listenToUnFavorite(),
+      listenLogout(),
+      listenToFavorite(),
+      openContact();
   },
 };

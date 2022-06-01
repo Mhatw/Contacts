@@ -23,6 +23,8 @@ function renderProfile() {
   <main class="container is-max-desktop">
   <div class="profile">
   <div class="profileBody">
+
+  <h2 class="titleSection">Contact info</h2>
   <!-- img -->
   <figure class="image is-128x128">
           <img 
@@ -45,7 +47,7 @@ function renderProfile() {
         <a id="back-btn" class="button is-link is-light">Back</a>
       </div>
       <div class="control">
-        <a id="delete-btn" title="this feature is in progress" class="button is-danger " Disabled>Delete</a>
+        <a id="delete-btn" class="button is-danger">Delete</a>
       </div>
       <div class="control">
         <a id="edit-btn" class="button is-link">Edit</a>
@@ -70,13 +72,15 @@ function listenBack() {
 function listenDelete() {
   const deleteBtn = document.querySelector("#delete-btn");
   deleteBtn.addEventListener("click", async (event) => {
-    try {
-      event.preventDefault();
-      await deleteContacts(STORE.currentContact);
-      STORE.deleteContact(STORE.currentContact);
-      DOMHandler.load(HomePage);
-    } catch (error) {
-      console.log(error);
+    if (confirm("Are you sure you want to delete this contact?")) {
+      try {
+        event.preventDefault();
+        await deleteContacts(STORE.currentContact);
+        STORE.deleteContact(STORE.currentContact);
+        DOMHandler.load(HomePage);
+      } catch (error) {
+        console.log(error);
+      }
     }
   });
 }

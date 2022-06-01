@@ -12,20 +12,29 @@ function renderSignup() {
   return `
   <header class="container is-max-desktop">
 <a class="navbar-item" href="../../index.html">
-  <h1>📕 Sign Up</h1>
+  <h1>📕 Contacts App</h1>
 </a>
 </header>
-<main class="container is-max-desktop">
+<main class="container is-max-desktop signupView">
 <!-- form -->
 <form action="" class="form">
   <div class="formBody">
+  <h2 class="titleSection">Sign up</h2>
     ${renderInput("email", "email", "email", SignupError)}       
-    ${renderInput("password", "password", "password", SignupError, "passwordBox", `minlength="6" required`)}
+    ${renderInput(
+      "password",
+      "password",
+      "password",
+      SignupError,
+      "passwordBox",
+      `minlength="6" required`
+    )}
     ${
       SignupError
         ? `<p class="tag is-danger is-light"> 😨 ${SignupError}</p>`
         : ""
     }
+    <p>you already have an account? <a id="to-login-btn2" href="#">login</a></p>
   </div>
 
   <div class="linksFooter field">
@@ -55,6 +64,13 @@ function listenSubmitForm() {
       SignupPage.state.SignupError = null;
     }, 800);
   });
+  $("#to-login-btn2").addEventListener("click", () => {
+    loadingPage();
+    setTimeout(() => {
+      DOMHandler.load(LoginPage);
+      SignupPage.state.SignupError = null;
+    }, 800);
+  });
   $form.addEventListener("submit", async (event) => {
     $("#submit-btn").classList.toggle("is-loading");
     try {
@@ -75,7 +91,6 @@ function listenSubmitForm() {
           DOMHandler.load(HomePage);
         }, 500);
       }, 500);
-
     } catch (error) {
       SignupPage.state.SignupError = error.message;
       setTimeout(function () {

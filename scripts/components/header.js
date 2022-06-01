@@ -8,11 +8,11 @@ export function renderHeader() {
   <!-- header -->
   <header class="container is-max-desktop">
   <a class="navbar-item" href="../../index.html">
-  <h1>📕 Contact Detail</h1>
+  <h1>📕 Contacts App</h1>
   </a>
   <button id="logout-btn" class="button is-danger is-light is-small">logout</button>
   </header>
-  `
+  `;
 }
 
 export function listenLogout() {

@@ -39,14 +39,17 @@ main {
   overflow: scroll;
   scrollbar-width: none;
 }
+.signupView {
+  background-color: #f7fffc;
+}
 @media (orientation: landscape) {
   main {
     height: 80%;
   }
 }
 #create-btn {
-  width: 3em;
-  height: 3em;
+  width: 2em;
+  height: 2em;
   border-radius: 100%;
   cursor: pointer;
   padding: 0;
@@ -56,4 +59,19 @@ main {
   align-items: center;
   position: fixed;
   transition: 0s;
+}
+
+.js-contact-list {
+  padding-bottom: 2rem;
+}
+
+.titleSection {
+  width: 100%;
+  /* border: 1px solid red; */
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000000;
 }
