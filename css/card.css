@@ -76,6 +76,12 @@
   animation-iteration-count: none;
 }
 
+.favoriteClass > #star-common,
+.favoriteClass > #star-common:hover {
+  color: rgb(208, 208, 208);
+  animation-name: none;
+}
+
 @keyframes star-breath {
   0% {
     color: rgb(255, 194, 12);
@@ -91,5 +97,16 @@
     color: rgb(255, 194, 12);
     left: 0px;
     top: 0px;
+  }
+}
+@keyframes card-breath {
+  0% {
+    /* background-color: transparent; */
+  }
+  50% {
+    background-color: rgb(255, 255, 245);
+  }
+  100% {
+    /* background-color: transparent; */
   }
 }

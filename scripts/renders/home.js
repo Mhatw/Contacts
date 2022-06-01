@@ -67,7 +67,9 @@ function listenToFavorite() {
       const favoriteLink = event.target.closest("[data-id]");
       const id = favoriteLink.dataset.id;
 
-      if (STORE.favorites.find((e) => e.id == id)) return;
+      if (STORE.favorites.find((e) => e.id == id)) {
+        return alert("Already in favorites");
+      }
       await editContacts(id, { favorite: true }); // request api
       STORE.favoriteContact(id);
       DOMHandler.reload();

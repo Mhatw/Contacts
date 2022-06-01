@@ -1,3 +1,5 @@
+import STORE from "../store.js";
+
 const avatar = (current) =>
   ({
     Friends: "../../assets/friend.svg",
@@ -7,10 +9,14 @@ const avatar = (current) =>
   }[current]);
 
 export const cardHtml = (contact, type) => {
+  const favoriteClass = STORE.favorites.find((e) => e.id == contact.id)
+    ? "favoriteClass"
+    : "";
+  // console.log(isFavorite);
   return `
       <div data-id=${
         contact.id
-      } class="box container is-max-desktop contactCard">
+      } class="box container is-max-desktop contactCard ${favoriteClass}">
       <div id="contact-card-left">
         <!-- img perfil -->
         <figure class="image is-48x48">
