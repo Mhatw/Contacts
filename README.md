@@ -4,12 +4,35 @@ Keep track of contact emails and phone numbers in your local memory (your brain)
 is something from the past. `Contactable` make your life easier keeping track of
 all that information for you.
 
-![https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/4gulpyNv/e7081837-0ef5-4008-aa7e-dd461b3b99b1.jpg?source=viewer&v=2cede67098f688aed48ba60fda60c02b](https://p-vvf5mjm.t4.n0.cdn.getcloudapp.com/items/4gulpyNv/e7081837-0ef5-4008-aa7e-dd461b3b99b1.jpg?source=viewer&v=2cede67098f688aed48ba60fda60c02b)
+<div style="display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem">
+<img src="./capture.png"
+     alt="Markdown Monster icon"
+     style="margin-right: 10px;width:200px" />
+<p align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skills.thijs.gg/icons?i=js,html,css,vscode" />
+  </a>
+</p>
+<a href="https://contacts-ruby.vercel.app/" target="_blank"
+style="font: bold 11px Arial;
+display:flex;
+align-items:center;
+justify-content:center;
+  width:60%;
+  margin-bottom:2rem;
+  height:2rem;
+  text-decoration: none;
+  text-align: center;
+  font-size:1rem;
+  border-radius: 0.4rem;
+  background-color: #46ab5e;
+  color: #fff;
+  padding: 2px 6px 2px 6px;">Try online</a>
+</div>
 
 ## Resources
 
-- Design: [**here**](https://www.figma.com/file/gAfbtV6U3DW5m1zNDrPSQT/Contactable?node-id=0%3A1)
-- API repo: [**here](https://github.com/codeableorg/contactable-js-api)** (contains a insomnia json file)
+- API repo: [\*\*here](https://github.com/codeableorg/contactable-js-api)\*\* (contains a insomnia json file)
 
 ## **User personas**
 
@@ -143,5 +166,3 @@ favorite
 - When I click on the Star button of a favorite contact
 - Then the favorite mark is removed from the contact
 - And it is removed from the Favorites list
-
-HAPPY CODING! 👨‍💻 👨‍💻
