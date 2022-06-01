@@ -45,7 +45,7 @@ function renderProfile() {
         <a id="back-btn" class="button is-link is-light">Back</a>
       </div>
       <div class="control">
-        <a id="delete-btn" title="this feature is in progress" class="button is-danger " Disabled>Delete</a>
+        <a id="delete-btn" class="button is-danger">Delete</a>
       </div>
       <div class="control">
         <a id="edit-btn" class="button is-link">Edit</a>
