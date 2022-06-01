@@ -6,9 +6,9 @@ all that information for you.
 [try online](https://contacts-ruby.vercel.app/)
 <p align="center">
 <img src="./capture.png"
-     alt="Markdown Monster icon"
+     alt="home screenshot"
      style="margin-right: 10px;width:200px" />
-     </p>
+</p>
 <p align="center">
   <a href="https://skillicons.dev">
     <img src="https://skills.thijs.gg/icons?i=js,html,css,vscode" />
