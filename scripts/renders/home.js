@@ -34,7 +34,9 @@ function render() {
   return `
   ${renderHeader()}
   <main class="container is-max-desktop">
+  
   <div class="container is-max-desktop cardDiv">
+  <h2 class="titleSection" >Home</h2>
         ${renderFavorites()}
         <h3 class="tag is-info is-light">ALL CONTACTS (${
           STORE.contacts.length

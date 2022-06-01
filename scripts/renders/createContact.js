@@ -14,7 +14,7 @@ function renderCreate() {
     <main class="container is-max-desktop">
       <form action="" class="form">
         <div class="formBody">
-          
+        <h2 class="titleSection">New contact</h2>
           ${renderInput("name", "name", "Name", createError)}
           ${renderInput(
             "tel",

@@ -11,20 +11,29 @@ function renderLogin() {
   return `
   <header class="container is-max-desktop">
   <a class="navbar-item" href="../../index.html">
-    <h1>📕 Login</h1>
+    <h1>📕 Contacts App</h1>
   </a>
   </header>
   <main class="container is-max-desktop">
   <!-- form -->
   <form action="" class="form">
     <div class="formBody">
+    <h2 class="titleSection">Login</h2>
       ${renderInput("email", "email", "email", loginError)}        
-      ${renderInput("password", "password", "password", loginError, "passwordBox", `minlength="6" required`)}
+      ${renderInput(
+        "password",
+        "password",
+        "password",
+        loginError,
+        "passwordBox",
+        `minlength="6" required`
+      )}
       ${
         loginError
           ? `<p class="tag is-danger is-light"> 😨 ${loginError}</p>`
           : ""
       }
+      <p>you don't have an account? <a id="to-signup-btn2" href="#">signup</a></p>
     </div>
 
     <div class="linksFooter field">
@@ -48,6 +57,13 @@ const $ = (selector) => document.querySelector(selector);
 function listenSubmitForm() {
   const $form = $(".form");
   $("#to-signup-btn").addEventListener("click", () => {
+    loadingPage();
+    setTimeout(() => {
+      DOMHandler.load(SignupPage);
+      LoginPage.state.loginError = null;
+    }, 800);
+  });
+  $("#to-signup-btn2").addEventListener("click", () => {
     loadingPage();
     setTimeout(() => {
       DOMHandler.load(SignupPage);

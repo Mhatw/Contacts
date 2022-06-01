@@ -23,6 +23,8 @@ function renderProfile() {
   <main class="container is-max-desktop">
   <div class="profile">
   <div class="profileBody">
+
+  <h2 class="titleSection">Contact info</h2>
   <!-- img -->
   <figure class="image is-128x128">
           <img 
@@ -70,13 +72,15 @@ function listenBack() {
 function listenDelete() {
   const deleteBtn = document.querySelector("#delete-btn");
   deleteBtn.addEventListener("click", async (event) => {
-    try {
-      event.preventDefault();
-      await deleteContacts(STORE.currentContact);
-      STORE.deleteContact(STORE.currentContact);
-      DOMHandler.load(HomePage);
-    } catch (error) {
-      console.log(error);
+    if (confirm("Are you sure you want to delete this contact?")) {
+      try {
+        event.preventDefault();
+        await deleteContacts(STORE.currentContact);
+        STORE.deleteContact(STORE.currentContact);
+        DOMHandler.load(HomePage);
+      } catch (error) {
+        console.log(error);
+      }
     }
   });
 }

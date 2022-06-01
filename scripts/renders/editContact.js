@@ -14,9 +14,17 @@ function renderEdit() {
     <main class="container is-max-desktop">
       <form action="" class="form">
         <div class="formBody">
+        <h2 class="titleSection">Edit contact</h2>
         
         ${renderInput("name", "name", "Name", createError)}
-        ${renderInput("tel", "number", "Number", createError, "mailBox", `maxlength="9"`)}
+        ${renderInput(
+          "tel",
+          "number",
+          "Number",
+          createError,
+          "mailBox",
+          `maxlength="9"`
+        )}
         ${renderInput("email", "email", "Email", createError)}
           
           <div class="passwordBox select is-info">
