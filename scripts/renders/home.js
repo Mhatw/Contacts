@@ -126,10 +126,10 @@ export const HomePage = {
   },
   addListeners() {
     listenCreate(),
-    calcMainAddBtn(),
-    listenToUnFavorite(),
-    listenLogout(),
-    listenToFavorite(),
-    openContact();
+      calcMainAddBtn(),
+      listenToUnFavorite(),
+      listenLogout(),
+      listenToFavorite(),
+      openContact();
   },
 };

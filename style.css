@@ -45,8 +45,8 @@ main {
   }
 }
 #create-btn {
-  width: 3em;
-  height: 3em;
+  width: 2em;
+  height: 2em;
   border-radius: 100%;
   cursor: pointer;
   padding: 0;
@@ -56,4 +56,8 @@ main {
   align-items: center;
   position: fixed;
   transition: 0s;
+}
+
+.js-contact-list {
+  padding-bottom: 2rem;
 }
